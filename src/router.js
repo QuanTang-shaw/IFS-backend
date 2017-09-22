@@ -1,13 +1,19 @@
 import React from 'react';
-import { Router, Route, IndexRoute } from 'dva/router';
+import { Switch, Router, Route, IndexRoute ,routerRedux ,Redirect } from 'dva/router';
+import dynamic from 'dva/dynamic';
 import IndexPage from './routes/IndexPage';
-import factoryMG from './Pages/factory/factoryManagement';
-import factoryList from './Pages/factory/factoryList/factoryList';
-import factoryMap from './Pages/factory/factoryMap/factoryMap';
-import workshopMG from './Pages/workshop/workshopList';
+import App from './routes/app';
+// import factoryMG from './routes/factory/factoryManagement';
+import factoryList from './routes/factory/factoryList/factoryList';
+import machineList from './routes/machine/machineList';
+import factoryMap from './routes/factory/factoryMap/factoryMap';
+import workshopMG from './routes/workshop/workshopList';
+// import example from './models/example'
 
-function RouterConfig({ history }) {
-  return (
+const { ConnectedRouter } = routerRedux;
+function RouterConfig({ history, app }) {
+
+  /*  return (
     <Router history={history}>
       <Route path="/" component={IndexPage}>
         <IndexRoute component={factoryMG} />
@@ -19,7 +25,20 @@ function RouterConfig({ history }) {
         <Route path="/workshopManagement" component={workshopMG} />
       </Route>
     </Router>
+  );  */
+  return (
+    <ConnectedRouter history={history}>
+      <App>
+        <Switch>
+          <Route exact path="/" render={() => (<Redirect to="/factory" />)} />
+          {/* <IndexRoute component={factoryMG} /> */}
+          <Route path="/factory"  component={factoryList} />
+          <Route path="/workshop" component={workshopMG} />
+          <Route path="/machine" component={machineList} />
+          {/* <Route path="/workshop" component={workshopMG} /> */}
+        </Switch>
+      </App>
+    </ConnectedRouter> 
   );
 }
-
 export default RouterConfig;
