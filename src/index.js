@@ -15,7 +15,7 @@ const app = dva({
 // 3. Model
 app.model(require('./models/app'));
 app.model(require('./models/factory'));
-// app.model(require('./models/workshop'));
+app.model(require('./models/workshop'));
 
 // 4. Router
 app.router(require('./router'));

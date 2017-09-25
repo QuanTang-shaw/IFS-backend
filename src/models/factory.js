@@ -1,4 +1,4 @@
-
+import { FactoryListActive } from '../services/factory'
 export default {
   namespace: 'factoryList',
   state: {
@@ -42,12 +42,32 @@ export default {
   },
   subscriptions: {
     setup({ dispatch, history }) {  // eslint-disable-line
+      console.log(history);
+      history.listen(({ pathname }) => {
+        console.log(pathname)
+        if (pathname === '/factory' || pathname === '/') {
+          // alert('fecth');
+          // console.log(FactoryListActive)
+          // FactoryListActive()
+          // dispatch({ type: 'fectcFactoryList' })
+          // dispatch({ type: 'queryWeather' })
+        }
+      })
     },
   },
 
   effects: {
     *fetch({ payload }, { call, put }) {  // eslint-disable-line
       yield put({ type: 'save' });
+    },
+    * fectcFactoryList ({
+      payload,
+    }, { call, put }) {
+      const data = yield call(FactoryListActive(), parse(payload))
+      yield put({
+        type: 'updateState',
+        payload: data,
+      })
     },
   },
 

@@ -15,6 +15,13 @@ export default {
       },
     
       reducers: {
+        updateState (state, { payload }) {
+          alert('update')
+          return {
+            ...state,
+            ...payload,
+          }
+        },
         save(state, action) {
           return { ...state, ...action.payload };
         },

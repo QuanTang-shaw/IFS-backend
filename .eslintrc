@@ -1,5 +1,5 @@
 {
-  /* "parser": "babel-eslint",
+  "parser": "babel-eslint",
   "extends": "airbnb",
   "rules": {
     "arrow-body-style": [0],
@@ -28,5 +28,5 @@
     "ecmaFeatures": {
       "experimentalObjectRestSpread": true
     }
-  } */
+  }
 }

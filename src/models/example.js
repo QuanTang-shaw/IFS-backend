@@ -1,8 +1,9 @@
 
 export default {
-    namespace: 'workshop',
+    namespace: 'example',
     state: {
-      selectedRowKeys: [],
+      current:'',
+      selectedRowKeys: [],  // Check here to configure the default column
       loading: false,
     },
     subscriptions: {
@@ -20,12 +21,6 @@ export default {
       save(state, action) {
         return { ...state, ...action.payload };
       },
-      select(state, action){
-        return {...state,selectedRowKeys:action.selectedRowKeys};
-      },
-      reload(state,action){
-
-      }
     },
   
   };

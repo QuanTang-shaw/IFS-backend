@@ -48,7 +48,7 @@ const factorylist = function ({dispatch, factoryList}) {
       key: 'buildingInfo',
       render:(name,value,index)=>(
         <div>
-          {console.log(value)}
+          {/* {console.log(value)} */}
           <p>面积:{value.buildingInfo.area}</p>
           <p>厂房数:{value.buildingInfo.number}</p>
         </div>
