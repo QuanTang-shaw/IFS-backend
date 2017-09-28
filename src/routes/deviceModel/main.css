@@ -1,0 +1,11 @@
+.wrap{
+    display: flex;
+    flex-direction: row;
+}
+.nav{
+    width:25%;
+}
+.model{
+    min-width:75%;
+    max-width: 75%;
+}

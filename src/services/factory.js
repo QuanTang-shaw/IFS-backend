@@ -11,5 +11,5 @@ export const FactoryListActive = async  function (){
                   "uFactoryTypeUUID":-1,
                     "uFactoryAdminUUID":-1
                 });
-     return result.obj.objectlist;
+     return result;
 }

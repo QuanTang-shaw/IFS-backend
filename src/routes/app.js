@@ -24,8 +24,6 @@ const App = ({children,app})=>{
                     </Content>
                 </Layout>
             </Layout>
-            <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-            <script src="http://cdn.top-link.me/lib/toplink-1.0.0/js/toplink.ajax-1.0.0.js"></script>
         </Layout>
     )
 }

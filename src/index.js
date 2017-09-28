@@ -1,6 +1,7 @@
 import dva from 'dva';
 import createLoading from 'dva-loading';
 import createHistory from 'history/createBrowserHistory';
+import './index.html';
 import './index.css';
 // 1. Initialize
 const app = dva({
@@ -16,6 +17,10 @@ const app = dva({
 app.model(require('./models/app'));
 app.model(require('./models/factory'));
 app.model(require('./models/workshop'));
+app.model(require('./models/machine'));
+app.model(require('./models/devcategory'));
+app.model(require('./models/vendor'));
+app.model(require('./models/device'));
 
 // 4. Router
 app.router(require('./router'));

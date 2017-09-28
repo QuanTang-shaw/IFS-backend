@@ -33,17 +33,17 @@ const SiderNav = ()=>{
                     </Link>
                 </Menu.Item>
                 <Menu.Item key="4">
-                    <Link to="/machine">
+                    <Link to="/devcategory">
                         设备类别
                     </Link>
                 </Menu.Item>
                 <Menu.Item key="5">
-                    <Link to="/machine">
+                    <Link to="/dev-vendor">
                         设备厂商
                     </Link>
                 </Menu.Item>
                 <Menu.Item key="6">
-                    <Link to="/machine">
+                    <Link to="/devicelist">
                         设备列表
                     </Link>
                 </Menu.Item>

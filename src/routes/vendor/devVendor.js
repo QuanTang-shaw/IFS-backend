@@ -2,29 +2,34 @@ import { Table,Button,Popconfirm,message } from 'antd';
 import { connect } from 'dva';
 
 
-const machineList =({dispatch,machineList})=>{
 
-    const {machineTableData}=machineList
+const devVendorList =({dispatch,vendorList})=>{
+
+    const {vendorListData}=vendorList
     const columns = [
         {
-            title: '机台编号',
-            dataIndex: 'numbering',
+            title: 'LOGO',
+            dataIndex: 'logo',
             // render: text => <a href="#">{text}</a>,
-        },
+        }, 
         {
-            title: '机台名称',
+            title: '名称',
             dataIndex: 'name',
         }, 
         {
-            title: '机台主管',
-            dataIndex: 'principal',
+            title: '英文名称',
+            dataIndex: 'EN_Name',
         },
         {
-            title: '机台类型',
-            dataIndex: 'machineType',
+            title: '全称',
+            dataIndex: 'fullName',
         },
         {
-            title:'车间操作',
+            title: '所在地',
+            dataIndex: 'address',
+        },
+        {
+            title:'操作',
             width:500,
             render:()=>(
               <div>
@@ -85,14 +90,14 @@ const machineList =({dispatch,machineList})=>{
     
     return(
         <div>
-            <p style={{borderBottom:'solid 2px #b7b5b3',marginBottom:'30px',fontSize:'25px'}}>机台管理</p>
-            <Table rowSelection={rowSelection} columns={columns} dataSource={machineTableData} />
+            <p style={{borderBottom:'solid 2px #b7b5b3',marginBottom:'30px',fontSize:'25px'}}>厂商管理</p>
+            <Table rowSelection={rowSelection} columns={columns} dataSource={vendorListData} />
         </div>
     )
 }
 function mapStateToProps(state, ownProps) {
     return {
-      machineList: state.machinelist
+      vendorList: state.vendorlist
     };
   }
-export default connect(mapStateToProps)(machineList);
+  export default connect(mapStateToProps)(devVendorList);

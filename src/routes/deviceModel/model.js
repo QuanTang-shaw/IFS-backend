@@ -2,7 +2,8 @@ import { Table, Button,Popconfirm,message } from 'antd';
 import { connect } from 'dva';
 
 
-const workshopList = function({dispatch, workshopList}){
+const Model = function({expandedKeys,gData,selectedRowKeys ,loading}){
+  // console.log(factoryList)
   /* start = () => {
     this.setState({ loading: true });
     // ajax request after empty completing
@@ -13,29 +14,27 @@ const workshopList = function({dispatch, workshopList}){
       });
     }, 1000);
   } */
-  // console.log( workshopList)
-  const {dataList ,selectedRowKeys ,loading}=workshopList
   const columns = [
       {
-          title: '车间编号',
+          title: '设备型号',
           dataIndex: 'numbering',
       }, 
       {
-          title: '车间名称',
+          title: '设备名称',
           dataIndex: 'name',
       }, 
       {
-          title: '车间主管',
-          dataIndex: 'principal',
+          title: '设备厂商',
+          dataIndex: 'address',
           // width:250
       },
       {
-        title: '车间类型',
-        dataIndex: 'workshopType',
+        title: '设备数量',
+        dataIndex: 'type',
         // width:150
       },
       {
-        title:'车间操作',
+        title:'操作',
         width:500,
         render:()=>(
           <div>
@@ -52,8 +51,8 @@ const workshopList = function({dispatch, workshopList}){
     data.push({
       key: i,
       numbering: `F1-${i}`,
-      name: `注塑车间-${i}`,
-      principal: `John snow ${i}`,
+      name: `模温机-${i}`,
+      address: `拓斯达`,
     });
   }
   const confirm=(e)=> {
@@ -67,7 +66,7 @@ const workshopList = function({dispatch, workshopList}){
     console.log(e);
     message.error('Click on No');
   }
-  // const { selectedRowKeys ,loading } =workshopList
+//   const { selectedRowKeys ,loading } =workshopList
   const onSelectChange = (selectedRowKeys) => {
     console.log('selectedRowKeys changed: ', selectedRowKeys);
     // this.setState({ selectedRowKeys });
@@ -88,20 +87,22 @@ const workshopList = function({dispatch, workshopList}){
   const hasSelected = selectedRowKeys.length > 0;
   return (
     <div>
-      <p style={{borderBottom:'solid 2px #b7b5b3',marginBottom:'30px',fontSize:'25px'}}>车间管理</p>
-      <div style={{ marginBottom: 16 }}>
+      {/* <div style={{ marginBottom: 16 }}>
         <Button type="primary" onClick={start}
           disabled={!hasSelected} loading={loading}
         >Reload</Button>
         <span style={{ marginLeft: 8 }}>{hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}</span>
-      </div>
-      <Table rowSelection={rowSelection} columns={columns} dataSource={dataList} />
+      </div> */}
+      <Table  columns={columns} dataSource={data} />
     </div>
   );
 }
-function mapStateToProps(state, ownProps) {
-  return {
-    workshopList: state.workshop
-  }
-}
-export default connect(mapStateToProps)(workshopList);
+// function mapStateToProps(state, ownProps) {
+//   console.log(state)
+//   // console.log(ownProps)
+//   return {
+//     workshopList: state.workshop
+//   };
+// }
+// export default connect(mapStateToProps)(workshopList);
+export default Model;
