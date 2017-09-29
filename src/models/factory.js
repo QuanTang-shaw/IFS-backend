@@ -3,7 +3,6 @@ export default {
   namespace: 'factoryList',
   state: {
     factoryTableData:[],
-    todoList: [],
     modalVisible:false,
     modalLoading:false
   },

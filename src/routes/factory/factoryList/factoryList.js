@@ -2,8 +2,8 @@ import React from 'react';
 import { Table, Button ,Popconfirm,message,Modal,Form, Input, DatePicker, Col} from 'antd';
 import { connect } from 'dva';
 const FormItem = Form.Item;
-
-
+import WrappedFactoryForm from '../../../components/EditForm/factoryForm'
+// console.log(WrappedFactoryForm)
 const factorylist = function ({dispatch, factoryList}) {
   // console.log(factoryList);
   // const pic=require('./assets/img/plant1.7e6c59c');
@@ -20,7 +20,9 @@ const factorylist = function ({dispatch, factoryList}) {
     console.log(e);
     message.error('Click on No');
   }
-  const showModal = () => {
+  const showModal = (record,ev) => {
+    console.log(record)
+    // console.log(ev)
     dispatch({
       type:'factoryList/toggleModal'
     })
@@ -93,7 +95,7 @@ const factorylist = function ({dispatch, factoryList}) {
       key: 'action',
       render:(text, record, index)=>(
         <div style={{display:'flex','justify-content': 'space-around'}}>
-          <Button icon="edit" onClick={showModal}>编辑</Button>
+          <Button icon="edit" onClick={showModal.bind(this,record)}>编辑</Button>
           <Popconfirm title="Are you sure delete this task?" onConfirm={confirm} onCancel={cancel} okText="Yes" cancelText="No">
             <Button type="danger" icon="delete">删除</Button>
           </Popconfirm>
@@ -118,7 +120,8 @@ const factorylist = function ({dispatch, factoryList}) {
           </Button>,
         ]}
       >
-        <Form>
+        <WrappedFactoryForm {...factoryList}/>
+        {/* <Form>
           <FormItem
             {...formItemLayout}
             label="名称"
@@ -144,7 +147,7 @@ const factorylist = function ({dispatch, factoryList}) {
             <Input placeholder="I'm the content is being validated" id="validating" />
           </FormItem>
 
-          {/* <FormItem
+          <FormItem
             {...formItemLayout}
             label="Success"
             hasFeedback
@@ -197,8 +200,8 @@ const factorylist = function ({dispatch, factoryList}) {
                 <DatePicker />
               </FormItem>
             </Col>
-          </FormItem> */}
-        </Form>
+          </FormItem>
+        </Form> */}
       </Modal>
     </div>
   );
