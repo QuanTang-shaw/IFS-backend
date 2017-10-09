@@ -42,7 +42,7 @@ class FactoryForm extends React.Component{
         e.preventDefault();
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
-            console.log('Received values of form: ', values);
+                console.log('Received values of form: ', values);
             }
         });
     }
@@ -52,8 +52,6 @@ class FactoryForm extends React.Component{
         confirmDirty: this.state.confirmDirty || !!value
       });
     }
-
-
     checkPassword = (rule, value, callback) => {
       const form = this.props.form;
       if (value && value !== form.getFieldValue('password')) {
@@ -107,7 +105,7 @@ class FactoryForm extends React.Component{
         <Form onSubmit={this.handleSubmit}>
         <FormItem
             {...formItemLayout}
-            label="E-mail"
+            label="名称"
             hasFeedback
         >
             {getFieldDecorator('email', {
@@ -122,7 +120,7 @@ class FactoryForm extends React.Component{
         </FormItem>
         <FormItem
             {...formItemLayout}
-            label="Password"
+            label="地址"
             hasFeedback
         >
             {getFieldDecorator('password', {
@@ -137,7 +135,7 @@ class FactoryForm extends React.Component{
         </FormItem>
         <FormItem
             {...formItemLayout}
-            label="Confirm Password"
+            label="工厂描述"
             hasFeedback
         >
             {getFieldDecorator('confirm', {
@@ -154,7 +152,7 @@ class FactoryForm extends React.Component{
             {...formItemLayout}
             label={(
             <span>
-                Nickname&nbsp;
+                图片
                 <Tooltip title="What do you want other to call you?">
                 <Icon type="question-circle-o" />
                 </Tooltip>
@@ -168,7 +166,7 @@ class FactoryForm extends React.Component{
             <Input />
             )}
         </FormItem>
-        <FormItem
+       {/*  <FormItem
             {...formItemLayout}
             label="Habitual Residence"
         >
@@ -216,7 +214,7 @@ class FactoryForm extends React.Component{
         </FormItem>
         <FormItem {...tailFormItemLayout}>
             <Button type="primary" htmlType="submit" size="large">Register</Button>
-        </FormItem>
+        </FormItem> */}
         </Form>
     );
     }

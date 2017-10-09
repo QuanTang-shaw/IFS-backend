@@ -9,10 +9,10 @@ import styles from './Header.css';
 
 const Head = ()=>{
     return(
-        <Header className="header">
+        <Header className="header" theme="light">
             <div className={ styles.logo} />
-           {/*  <Menu
-            theme="dark"
+            {/* <Menu
+            theme="light"
             mode="horizontal"
             defaultSelectedKeys={['2']}
             style={{ lineHeight: '64px' }}

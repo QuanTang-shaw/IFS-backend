@@ -110,7 +110,7 @@ const factorylist = function ({dispatch, factoryList}) {
       <Table columns={columns} dataSource={factoryTableData} />
       <Modal
         visible={modalVisible}
-        title="Title"
+        title="工厂编辑"
         onOk={handleOk}
         onCancel={showModal}
         footer={[

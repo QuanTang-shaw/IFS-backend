@@ -42,7 +42,7 @@ const deviceList =({dispatch,deviceList})=>{
         },
         {
             title:'车间操作',
-            width:500,
+            // width:500,
             render:()=>(
               <div>
                 <Button icon="edit">编辑</Button>
