@@ -3,6 +3,7 @@ import { connect } from 'dva';
 import { Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button } from 'antd';
 const FormItem = Form.Item;
 const Option = Select.Option;
+import Avatar from './UpLoad.js'
 
 
 const residences = [{
@@ -69,9 +70,14 @@ class FactoryForm extends React.Component{
       }
       callback();
     }
+    getValue=()=>{
+        const { getFieldsValue} = this.props.form;
+        // alert('get');
+        console.log(getFieldsValue())
+    }
 
     render() {
-    const { getFieldDecorator } = this.props.form;
+    const { getFieldDecorator} = this.props.form;
     const formItemLayout = {
         labelCol: {
         xs: { span: 24 },
@@ -110,9 +116,9 @@ class FactoryForm extends React.Component{
         >
             {getFieldDecorator('email', {
             rules: [{
-                type: 'email', message: 'The input is not valid E-mail!',
+                type: 'string', message: '必须是字符串',
             }, {
-                required: true, message: 'Please input your E-mail!',
+                required: true, message: '请输入工厂名称',
             }],
             })(
             <Input />
@@ -130,7 +136,7 @@ class FactoryForm extends React.Component{
                 validator: this.checkConfirm,
             }],
             })(
-            <Input type="password" />
+            <Input/>
             )}
         </FormItem>
         <FormItem
@@ -145,25 +151,18 @@ class FactoryForm extends React.Component{
                 validator: this.checkPassword,
             }],
             })(
-            <Input type="password" onBlur={this.handleConfirmBlur} />
+            <Input type="textarea" rows={4} />
             )}
         </FormItem>
         <FormItem
             {...formItemLayout}
-            label={(
-            <span>
-                图片
-                <Tooltip title="What do you want other to call you?">
-                <Icon type="question-circle-o" />
-                </Tooltip>
-            </span>
-            )}
+            label="工厂图片"
             hasFeedback
         >
             {getFieldDecorator('nickname', {
             rules: [{ required: true, message: 'Please input your nickname!' }],
             })(
-            <Input />
+            <Avatar/>
             )}
         </FormItem>
        {/*  <FormItem
@@ -214,7 +213,9 @@ class FactoryForm extends React.Component{
         </FormItem>
         <FormItem {...tailFormItemLayout}>
             <Button type="primary" htmlType="submit" size="large">Register</Button>
-        </FormItem> */}
+        </FormItem> */
+        }
+        <Button onClick={this.getValue}>提交</Button>
         </Form>
     );
     }

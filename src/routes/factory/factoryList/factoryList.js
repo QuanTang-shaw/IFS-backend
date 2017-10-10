@@ -113,13 +113,14 @@ const factorylist = function ({dispatch, factoryList}) {
         title="工厂编辑"
         onOk={handleOk}
         onCancel={showModal}
-        footer={[
+        footer={null}
+      >
+        {/* footer={[
           <Button key="back" size="large" onClick={showModal}>取消</Button>,
           <Button key="submit" type="primary" size="large" loading={modalLoading} onClick={handleOk}>
             提交
           </Button>,
-        ]}
-      >
+        ]} */}
         <WrappedFactoryForm {...factoryList}/>
         {/* <Form>
           <FormItem
