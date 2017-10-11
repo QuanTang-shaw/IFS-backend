@@ -34,16 +34,29 @@ class FactoryForm extends React.Component{
     // console.log(props)
     constructor(props) {
         super(props);
-        console.log(props)
+        console.log("来自继承:",props)
     }
     state = {
         confirmDirty: false,
     };
+    componentDidMount(){
+        const {factoryEditData}=this.props;
+        console.log('willmount',this.props.factoryEditData);
+        console.log("设置:",this.props.form.setFieldsValue);
+        this.props.form.setFieldsValue({name:factoryEditData.name});
+    }
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
                 console.log('Received values of form: ', values);
+                this.props.dispatch({
+                    type:'factoryList/FactoryEditUpdate',
+                    payLoad:values
+                })
+                this.props.dispatch({
+                    type:'factoryList/toggleModal'
+                })
             }
         });
     }
@@ -74,6 +87,10 @@ class FactoryForm extends React.Component{
         const { getFieldsValue} = this.props.form;
         // alert('get');
         console.log(getFieldsValue())
+    }
+    resetForm=()=>{
+        const { resetFields} = this.props.form;
+        resetFields();
     }
 
     render() {
@@ -114,7 +131,7 @@ class FactoryForm extends React.Component{
             label="名称"
             hasFeedback
         >
-            {getFieldDecorator('email', {
+            {getFieldDecorator('name', {
             rules: [{
                 type: 'string', message: '必须是字符串',
             }, {
@@ -129,7 +146,7 @@ class FactoryForm extends React.Component{
             label="地址"
             hasFeedback
         >
-            {getFieldDecorator('password', {
+            {getFieldDecorator('address', {
             rules: [{
                 required: true, message: 'Please input your password!',
             }, {
@@ -144,11 +161,9 @@ class FactoryForm extends React.Component{
             label="工厂描述"
             hasFeedback
         >
-            {getFieldDecorator('confirm', {
+            {getFieldDecorator('descript', {
             rules: [{
                 required: true, message: 'Please confirm your password!',
-            }, {
-                validator: this.checkPassword,
             }],
             })(
             <Input type="textarea" rows={4} />
@@ -159,11 +174,11 @@ class FactoryForm extends React.Component{
             label="工厂图片"
             hasFeedback
         >
-            {getFieldDecorator('nickname', {
+            {/* {getFieldDecorator('nickname', {
             rules: [{ required: true, message: 'Please input your nickname!' }],
             })(
+            )} */}
             <Avatar/>
-            )}
         </FormItem>
        {/*  <FormItem
             {...formItemLayout}
@@ -215,7 +230,8 @@ class FactoryForm extends React.Component{
             <Button type="primary" htmlType="submit" size="large">Register</Button>
         </FormItem> */
         }
-        <Button onClick={this.getValue}>提交</Button>
+        <Button onClick={this.handleSubmit}>提交</Button>
+        <Button onClick={this.resetForm}>重置</Button>
         </Form>
     );
     }

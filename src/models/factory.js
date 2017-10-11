@@ -1,8 +1,9 @@
-import { FactoryListActive } from '../services/factory'
+import { FactoryListActive ,FactoryUpdate } from '../services/factory'
 export default {
   namespace: 'factoryList',
   state: {
     factoryTableData:[],
+    factoryEditData:[],
     modalVisible:false,
     modalLoading:false
   },
@@ -49,6 +50,7 @@ export default {
       action.payload.forEach((ele,index)=> {
         state.factoryTableData.push({
           key: `${index}`,
+          id:ele.uFactoryUUID,
           name: ele.strFactoryName,
           age: 32,
           address: ele.strFactoryAddress,
@@ -65,8 +67,28 @@ export default {
       });
       return { ...state };
     },
-    toggleModal(state){
+    FactoryEditUpdate(state,action){
+      /* FactoryUpdate({
+        uFactoryUUID     : self.editPlant.uFactoryUUID,
+        uParkUUID        : self.editPlant.uParkUUID,     //从属园区编码
+        uFactoryTypeUUID : 1,
+        uFactoryAdminUUID: 1,
+        strFactoryName   : self.formValidate.name,    //工厂名称
+        strFactoryID     : self.editPlant.strFactoryID,    //工厂ID
+        strFactoryDesc   : self.formValidate.desc,
+        strFactoryNote   : "Note HK LEE 1",
+        strFactoryAddress: self.formValidate.address,
+        fFactoryLatitude :-1,
+        fFactoryLongitude:-1,
+        fFactoryAltitude :-1
+      }); */
+      console.log(action);
+      return { ...state};
+    },
+    toggleModal(state,action){
       state.modalVisible=!state.modalVisible;
+      console.log(action)
+      state.factoryEditData=action.editData;
       return { ...state};
     },
     save(state, action) {

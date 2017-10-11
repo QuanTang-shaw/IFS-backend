@@ -13,3 +13,7 @@ export const FactoryListActive = async  function (){
                 });
      return result;
 }
+
+export const FactoryUpdate =async function (obj) {
+    await   get("Handler_Factory_V1.ashx","Factory_Update",obj);
+}

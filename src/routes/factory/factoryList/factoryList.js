@@ -21,10 +21,11 @@ const factorylist = function ({dispatch, factoryList}) {
     message.error('Click on No');
   }
   const showModal = (record,ev) => {
-    console.log(record)
+    // console.log(record)
     // console.log(ev)
     dispatch({
-      type:'factoryList/toggleModal'
+      type:'factoryList/toggleModal',
+      editData:record
     })
   }
   const handleOk = () => {
@@ -72,7 +73,7 @@ const factorylist = function ({dispatch, factoryList}) {
       key: 'buildingInfo',
       render:(name,value,index)=>(
         <div>
-          {/* {console.log(value)} */}
+          {/* console.log(value) */}
           <p>面积:{value.buildingInfo.area}</p>
           <p>厂房数:{value.buildingInfo.number}</p>
         </div>
@@ -107,6 +108,7 @@ const factorylist = function ({dispatch, factoryList}) {
   return (
     <div>
       <p style={{borderBottom:'solid 2px #b7b5b3',marginBottom:'30px',fontSize:'25px'}}>工厂管理</p>
+      <Button type="primary" icon="plus" style={{marginBottom:'20px'}}>添加工厂</Button>
       <Table columns={columns} dataSource={factoryTableData} />
       <Modal
         visible={modalVisible}
