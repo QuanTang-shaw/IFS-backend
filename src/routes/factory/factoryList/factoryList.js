@@ -108,7 +108,7 @@ const factorylist = function ({dispatch, factoryList}) {
   return (
     <div>
       <p style={{borderBottom:'solid 2px #b7b5b3',marginBottom:'30px',fontSize:'25px'}}>工厂管理</p>
-      <Button type="primary" icon="plus" style={{marginBottom:'20px'}}>添加工厂</Button>
+      <Button type="primary" icon="plus" onClick={showModal} style={{marginBottom:'20px'}}>添加工厂</Button>
       <Table columns={columns} dataSource={factoryTableData} />
       <Modal
         visible={modalVisible}
