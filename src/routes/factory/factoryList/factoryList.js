@@ -95,7 +95,7 @@ const factorylist = function ({dispatch, factoryList}) {
       title: '操作',
       key: 'action',
       render:(text, record, index)=>(
-        <div style={{display:'flex','justify-content': 'space-around'}}>
+        <div style={{display:'flex','justifyContent': 'space-around'}}>
           <Button icon="edit" onClick={showModal.bind(this,record)}>编辑</Button>
           <Popconfirm title="Are you sure delete this task?" onConfirm={confirm} onCancel={cancel} okText="Yes" cancelText="No">
             <Button type="danger" icon="delete">删除</Button>

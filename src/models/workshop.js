@@ -4,6 +4,7 @@ export default {
     state: {
       dataList:[],
       selectedRowKeys: [],
+      modalVisible:false,
       loading: false,
     },
     subscriptions: {
@@ -49,6 +50,12 @@ export default {
           })
         });
         return { ...state };
+      },
+      toggleModal(state,action){
+        state.modalVisible=!state.modalVisible;
+        console.log(action)
+        if(action.hasOwnProperty('editData')) state.factoryEditData=action.editData;
+        return { ...state};
       },
       save(state, action) {
         return { ...state, ...action.payload };

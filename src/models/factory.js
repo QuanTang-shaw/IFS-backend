@@ -4,6 +4,7 @@ export default {
   state: {
     factoryTableData:[],
     factoryEditData:[],
+    tempData:[],
     modalVisible:false,
     modalLoading:false
   },
@@ -54,6 +55,7 @@ export default {
           name: ele.strFactoryName,
           age: 32,
           address: ele.strFactoryAddress,
+          desc:ele.strFactoryDesc,
           contact:'13111110000',
           buildingInfo:{
             area:"34m^2",
@@ -68,27 +70,29 @@ export default {
       return { ...state };
     },
     FactoryEditUpdate(state,action){
-      /* FactoryUpdate({
-        uFactoryUUID     : self.editPlant.uFactoryUUID,
-        uParkUUID        : self.editPlant.uParkUUID,     //从属园区编码
+      FactoryUpdate({
+        uFactoryUUID     : state.factoryEditData.id,
+        uParkUUID        : 1,     //从属园区编码
         uFactoryTypeUUID : 1,
         uFactoryAdminUUID: 1,
-        strFactoryName   : self.formValidate.name,    //工厂名称
-        strFactoryID     : self.editPlant.strFactoryID,    //工厂ID
-        strFactoryDesc   : self.formValidate.desc,
+        strFactoryName   : action.payLoad.name,    //工厂名称
+        strFactoryID     : '',    //工厂ID
+        strFactoryDesc   : action.payLoad.descript,
         strFactoryNote   : "Note HK LEE 1",
-        strFactoryAddress: self.formValidate.address,
+        strFactoryAddress: action.payLoad.address,
         fFactoryLatitude :-1,
         fFactoryLongitude:-1,
         fFactoryAltitude :-1
-      }); */
-      console.log(action);
+      });
+      console.log('FactoryEditUpdate',action);
+      console.log('FactoryEditUpdate-state',state);
+      console.log(FactoryUpdate);
       return { ...state};
     },
     toggleModal(state,action){
       state.modalVisible=!state.modalVisible;
       console.log(action)
-      state.factoryEditData=action.editData;
+      if(action.hasOwnProperty('editData')) state.factoryEditData=action.editData;
       return { ...state};
     },
     save(state, action) {

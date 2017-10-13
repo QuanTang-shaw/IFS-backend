@@ -1,6 +1,7 @@
-import { Table, Button,Popconfirm,message } from 'antd';
+import { Table, Button ,Popconfirm,message,Modal,Form, Input, DatePicker, Col } from 'antd';
 import { connect } from 'dva';
-
+const FormItem = Form.Item;
+import WrappedWorkshopForm from '../../components/EditForm/workshopForm'
 
 const workshopList = function({dispatch, workshopList}){
   /* start = () => {
@@ -14,7 +15,21 @@ const workshopList = function({dispatch, workshopList}){
     }, 1000);
   } */
   // console.log( workshopList)
-  const {dataList ,selectedRowKeys ,loading}=workshopList
+  const showModal = (record,ev) => {
+    // console.log(record)
+    // console.log(ev)
+    dispatch({
+      type:'workshop/toggleModal',
+      editData:record
+    })
+  }
+  const handleOk = () => {
+    this.setState({ loading: true });
+    setTimeout(() => {
+      this.setState({ loading: false, visible: false });
+    }, 3000);
+  }
+  const {dataList ,selectedRowKeys ,loading,modalVisible}=workshopList
   const columns = [
       {
           title: '车间编号',
@@ -37,9 +52,9 @@ const workshopList = function({dispatch, workshopList}){
       {
         title:'车间操作',
         width:500,
-        render:()=>(
-          <div>
-            <Button icon="edit">编辑</Button>
+        render:(text, record, index)=>(
+          <div style={{display:'flex','justifyContent': 'space-around'}}>
+            <Button icon="edit" onClick={showModal.bind(this,record)}>编辑</Button>
             <Popconfirm title="Are you sure delete this task?" onConfirm={confirm} onCancel={cancel} okText="Yes" cancelText="No">
               <Button type="danger" icon="delete">删除</Button>
             </Popconfirm>
@@ -96,6 +111,15 @@ const workshopList = function({dispatch, workshopList}){
         <span style={{ marginLeft: 8 }}>{hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}</span>
       </div>
       <Table rowSelection={rowSelection} columns={columns} dataSource={dataList} />
+      <Modal
+        visible={modalVisible}
+        title="车间编辑"
+        onOk={handleOk}
+        onCancel={showModal}
+        footer={null}
+      >
+        <WrappedWorkshopForm {...workshopList}/>
+      </Modal>
     </div>
   );
 }

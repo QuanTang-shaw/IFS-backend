@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
-import { Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button } from 'antd';
+import { Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button} from 'antd';
 const FormItem = Form.Item;
 const Option = Select.Option;
 import Avatar from './UpLoad.js'
@@ -30,7 +30,7 @@ const residences = [{
     }],
   }];
 // const FactoryForm=(props)=>
-class FactoryForm extends React.Component{
+class WorkshopForm extends React.Component{
     // console.log(props)
     constructor(props) {
         super(props);
@@ -92,6 +92,9 @@ class FactoryForm extends React.Component{
         const { resetFields} = this.props.form;
         resetFields();
     }
+    handleChange(value) {
+        console.log(`selected ${value}`);
+    }
 
     render() {
     const {factoryEditData}=this.props;
@@ -108,14 +111,14 @@ class FactoryForm extends React.Component{
     };
     const tailFormItemLayout = {
         wrapperCol: {
-        xs: {
-            span: 24,
-            offset: 0,
-        },
-        sm: {
-            span: 14,
-            offset: 6,
-        },
+            xs: {
+                span: 24,
+                offset: 0,
+            },
+            sm: {
+                span: 14,
+                offset: 6,
+            },
         },
     };
     const prefixSelector = getFieldDecorator('prefix', {
@@ -127,6 +130,22 @@ class FactoryForm extends React.Component{
     );
     return (
         <Form onSubmit={this.handleSubmit}>
+        <FormItem
+            {...formItemLayout}
+            label="编号"
+            hasFeedback
+        >
+            {getFieldDecorator('address', {
+            rules: [{
+                required: true, message: 'Please input your password!',
+            }, {
+                validator: this.checkConfirm,
+            }],
+            initialValue:factoryEditData.address
+            })(
+            <Input/>
+            )}
+        </FormItem>
         <FormItem
             {...formItemLayout}
             label="名称"
@@ -145,20 +164,44 @@ class FactoryForm extends React.Component{
         </FormItem>
         <FormItem
             {...formItemLayout}
-            label="地址"
+            label="车间主管"
             hasFeedback
         >
-            {getFieldDecorator('address', {
+            {getFieldDecorator('charge', {
             rules: [{
-                required: true, message: 'Please input your password!',
+                type: 'string', message: '必须是字符串',
             }, {
-                validator: this.checkConfirm,
+                required: true, message: '请输入工厂名称',
             }],
-            initialValue:factoryEditData.address
             })(
-            <Input/>
+            <Select defaultValue="lucy"  onChange={this.handleChange}>
+                <Option value="jack">张三</Option>
+                <Option value="lucy">李四</Option>
+                <Option value="disabled">王五</Option>
+                <Option value="Yiminghe">赵六</Option>
+            </Select>
             )}
-        </FormItem>
+        </FormItem>      
+        <FormItem
+            {...formItemLayout}
+            label="车间类型"
+            hasFeedback
+        >
+            {getFieldDecorator('workshopType', {
+            rules: [{
+                type: 'string', message: '必须是字符串',
+            }, {
+                required: true, message: '请输入工厂名称',
+            }],
+            })(
+            <Select defaultValue="lucy"  onChange={this.handleChange}>
+                <Option value="jack">注塑车间</Option>
+                <Option value="lucy">回收车间</Option>
+                <Option value="disabled">包装车间</Option>
+                <Option value="Yiminghe">运输车间</Option>
+            </Select>
+            )}
+        </FormItem>      
         <FormItem
             {...formItemLayout}
             label="工厂描述"
@@ -240,13 +283,6 @@ class FactoryForm extends React.Component{
     );
     }
 }
-const WrappedFactoryForm = Form.create({
-    // mapPropsToFields(props) {
-    //     console.log('mapPropsToFields', props);
-    //     /* return {
-    //       email: props.formState.email,
-    //     }; */
-    //   },
-})(FactoryForm);
+const WrappedWorkshopForm = Form.create({})(WorkshopForm);
 // export default WrappedFactoryForm;
-export default connect()(WrappedFactoryForm);
+export default connect()(WrappedWorkshopForm);
