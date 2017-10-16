@@ -1,10 +1,10 @@
-import { Table,Button,Popconfirm,message } from 'antd';
+import { Table,Button,Popconfirm,message,Modal,Form, Input, DatePicker, Col } from 'antd';
 import { connect } from 'dva';
 
-
+import WrappedMachineForm from '../../components/EditForm/machineForm'
 const machineList =({dispatch,machineList})=>{
 
-    const {machineTableData}=machineList
+    const {machineTableData,modalVisible}=machineList
     const columns = [
         {
             title: '机台编号',
@@ -25,14 +25,14 @@ const machineList =({dispatch,machineList})=>{
         },
         {
             title:'车间操作',
-            width:500,
-            render:()=>(
-              <div>
-                <Button icon="edit">编辑</Button>
-                <Popconfirm title="Are you sure delete this task?" onConfirm={confirm} onCancel={cancel} okText="Yes" cancelText="No">
-                  <Button type="danger" icon="delete">删除</Button>
-                </Popconfirm>
-              </div>
+            width:300,
+            render:(text, record, index)=>(
+                <div style={{display:'flex','justifyContent': 'space-around'}}>
+                    <Button icon="edit" onClick={showModal.bind(this,record)}>编辑</Button>
+                    <Popconfirm title="Are you sure delete this task?" onConfirm={confirm} onCancel={cancel} okText="Yes" cancelText="No">
+                        <Button type="danger" icon="delete">删除</Button>
+                    </Popconfirm>
+                </div>
             )
         }
     ];
@@ -82,11 +82,34 @@ const machineList =({dispatch,machineList})=>{
         console.log(e);
         message.error('Click on No');
     }
+    const showModal = (record,ev) => {
+        // console.log(record)
+        // console.log(ev)
+        dispatch({
+            type:'machinelist/toggleModal',
+            editData:record
+        })
+    }
+    const handleOk = () => {
+        this.setState({ loading: true });
+        setTimeout(() => {
+            this.setState({ loading: false, visible: false });
+        }, 3000);
+    }
     
     return(
         <div>
             <p style={{borderBottom:'solid 2px #b7b5b3',marginBottom:'30px',fontSize:'25px'}}>机台管理</p>
             <Table rowSelection={rowSelection} columns={columns} dataSource={machineTableData} />
+            <Modal
+                visible={modalVisible}
+                title="工厂编辑"
+                onOk={handleOk}
+                onCancel={showModal}
+                footer={null}
+            >
+                <WrappedMachineForm {...machineList}/>
+            </Modal>
         </div>
     )
 }

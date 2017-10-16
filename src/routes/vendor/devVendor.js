@@ -1,11 +1,11 @@
-import { Table,Button,Popconfirm,message } from 'antd';
+import { Table,Button,Popconfirm,message,Modal,Form, Input, DatePicker, Col } from 'antd';
 import { connect } from 'dva';
 
 
 
 const devVendorList =({dispatch,vendorList})=>{
 
-    const {vendorListData}=vendorList
+    const {vendorListData,modalVisible}=vendorList
     const columns = [
         {
             title: 'LOGO',
@@ -29,11 +29,11 @@ const devVendorList =({dispatch,vendorList})=>{
             dataIndex: 'address',
         },
         {
-            title:'操作',
-            width:500,
-            render:()=>(
-              <div>
-                <Button icon="edit">编辑</Button>
+            title: '操作',
+            key: 'action',
+            render:(text, record, index)=>(
+              <div style={{display:'flex','justifyContent': 'space-around'}}>
+                <Button icon="edit" onClick={showModal.bind(this,record)}>编辑</Button>
                 <Popconfirm title="Are you sure delete this task?" onConfirm={confirm} onCancel={cancel} okText="Yes" cancelText="No">
                   <Button type="danger" icon="delete">删除</Button>
                 </Popconfirm>
@@ -87,11 +87,32 @@ const devVendorList =({dispatch,vendorList})=>{
         console.log(e);
         message.error('Click on No');
     }
-    
+    const showModal = (record,ev) => {
+        // console.log(record)
+        dispatch({
+            type:'vendorlist/toggleModal',
+            editData:record
+        })
+    }
+    const handleOk = () => {
+        this.setState({ loading: true });
+        setTimeout(() => {
+            this.setState({ loading: false, visible: false });
+        }, 3000);
+    }
     return(
         <div>
             <p style={{borderBottom:'solid 2px #b7b5b3',marginBottom:'30px',fontSize:'25px'}}>厂商管理</p>
             <Table rowSelection={rowSelection} columns={columns} dataSource={vendorListData} />
+            <Modal
+                visible={modalVisible}
+                title="工厂编辑"
+                onOk={handleOk}
+                onCancel={showModal}
+                footer={null}
+            >
+                {/* <WrappedFactoryForm {...factoryList}/> */}
+            </Modal>
         </div>
     )
 }

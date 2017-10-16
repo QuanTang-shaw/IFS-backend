@@ -47,6 +47,12 @@ export default {
         });
         return { ...state };
       },
+      toggleModal(state,action){
+        state.modalVisible=!state.modalVisible;
+        console.log(action)
+        if(action.hasOwnProperty('editData')) state.factoryEditData=action.editData;
+        return { ...state};
+      },
       updateState (state, { payload }) {
         // alert('update');
         return {

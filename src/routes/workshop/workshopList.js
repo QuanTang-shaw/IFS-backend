@@ -104,10 +104,12 @@ const workshopList = function({dispatch, workshopList}){
   return (
     <div>
       <p style={{borderBottom:'solid 2px #b7b5b3',marginBottom:'30px',fontSize:'25px'}}>车间管理</p>
-      <div style={{ marginBottom: 16 }}>
+      <div style={{ marginBottom: 25 }}>
         <Button type="primary" onClick={start}
           disabled={!hasSelected} loading={loading}
         >Reload</Button>
+        <Button type="primary" icon="plus" 
+          onClick={showModal} style={{marginLeft:30}}>添加车间</Button>
         <span style={{ marginLeft: 8 }}>{hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}</span>
       </div>
       <Table rowSelection={rowSelection} columns={columns} dataSource={dataList} />
