@@ -1,6 +1,6 @@
 import { Table,Button,Popconfirm,message,Modal,Form, Input, DatePicker, Col } from 'antd';
 import { connect } from 'dva';
-
+import WrappedVendorForm from '../../components/EditForm/devVendorForm'
 
 
 const devVendorList =({dispatch,vendorList})=>{
@@ -111,7 +111,7 @@ const devVendorList =({dispatch,vendorList})=>{
                 onCancel={showModal}
                 footer={null}
             >
-                {/* <WrappedFactoryForm {...factoryList}/> */}
+                <WrappedVendorForm {...vendorList}/>
             </Modal>
         </div>
     )
