@@ -15,15 +15,16 @@ const App = ({children,app})=>{
     return(
         <Layout className={ styles.fullHeight}>
             <Header />
-            <Layout className="ant-layout-has-sider">
+            <Layout className="ant-layout-has-sider" >
                 <OutSider style={{minHeight:885}}/>
-                <Sider />
+                {children}
+                {/* <Sider />
                 <Layout style={{ padding: '0 24px 24px' }}>
                     <Bread />
                     <Content style={{ background: '#fff', padding: 24, margin: 0, minHeight: 280 }}>
                         {children}
                     </Content>
-                </Layout>
+                </Layout> */}
             </Layout>
         </Layout>
     )

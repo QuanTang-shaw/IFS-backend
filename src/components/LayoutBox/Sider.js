@@ -18,7 +18,7 @@ const SiderNav = ()=>{
             >
             <SubMenu key="sub1" title={<span><Icon type="user" />资产管理</span>}>
                 <Menu.Item key="1">
-                <Link to="/">
+                <Link to="/factory">
                     工厂管理
                 </Link>
                 </Menu.Item>
