@@ -21,16 +21,20 @@ const OutSiderNav = ()=>{
             style={{minHeight:885}}
             >
                 <Menu.Item key="1">
-                    <Icon type="user" />
-                    <span className="nav-text">nav 1</span>
+                    <Icon type="home" />
+                    <span className="nav-text">系统首页</span>
                 </Menu.Item>
                 <Menu.Item key="2">
-                    <Icon type="video-camera" />
-                    <span className="nav-text">nav 2</span>
+                    <Icon type="database" />
+                    <span className="nav-text">基础数据</span>
                 </Menu.Item>
                 <Menu.Item key="3">
-                    <Icon type="upload" />
-                    <span className="nav-text">nav 3</span>
+                    <Icon type="laptop" />
+                    <span className="nav-text">生产监控</span>
+                </Menu.Item>
+                <Menu.Item key="4">
+                    <Icon type="calculator" />
+                    <span className="nav-text">数据分析</span>
                 </Menu.Item>
             </Menu>
         </Sider>
