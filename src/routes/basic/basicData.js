@@ -9,12 +9,12 @@ const { Header, Content, Sider } = Layout;
 import factoryList from '../factory/factoryList/factoryList';
 import machineList from '../machine/machineList';
 import factoryMap from '../factory/factoryMap/factoryMap';
-import workshopMG from '../workshop/workshopList';
+import workshopMG from './workshop/workshopList';
 import devModel from '../deviceModel/main';
 import devVendor from '../vendor/devVendor';
 import devList from '../deviceList/deviceList';
 const basicData=(props)=>{
-    console.log(props)
+    // console.log(props);
     const {match}=props
     return(
         <div style={{  width:'100%',display:'flex' }}>
@@ -43,14 +43,14 @@ const basicData=(props)=>{
                         </Menu.Item>
                         <Menu.Item key="4">
                             <Link to="/basicData/devcategory">
-                                设备类别
+                                产线管理
                             </Link>
                         </Menu.Item>
-                        <Menu.Item key="5">
+                        {/* <Menu.Item key="5">
                             <Link to="/basicData/dev-vendor">
                                 设备厂商
                             </Link>
-                        </Menu.Item>
+                        </Menu.Item> */}
                         <Menu.Item key="6">
                             <Link to="/basicData/devicelist">
                                 设备列表
@@ -58,8 +58,16 @@ const basicData=(props)=>{
                         </Menu.Item>
                     </SubMenu>
                     <SubMenu key="sub2" title={<span><Icon type="laptop" />设备管理</span>}>
-                        <Menu.Item key="7">设备品牌</Menu.Item>
-                        <Menu.Item key="8">设备类别</Menu.Item>
+                        <Menu.Item key="7">
+                            <Link to="/basicData/dev-vendor">
+                                设备厂商
+                            </Link>
+                        </Menu.Item>
+                        <Menu.Item key="8">
+                            <Link to="/basicData/devcategory">
+                                设备类别
+                            </Link>
+                        </Menu.Item>
                         <Menu.Item key="9">设备型号</Menu.Item>
                     </SubMenu>
                     <SubMenu key="sub3" title={<span><Icon type="notification" />工作中心管理</span>}>
@@ -69,11 +77,12 @@ const basicData=(props)=>{
             </Sider>
             <Layout style={{ padding: '0 24px 24px' }}>
             <Breadcrumb style={{ margin: '12px 0' }}>
-                <Breadcrumb.Item>Home</Breadcrumb.Item>
-                <Breadcrumb.Item>List</Breadcrumb.Item>
+                <Breadcrumb.Item>基础数据</Breadcrumb.Item>
+                <Breadcrumb.Item>车间信息</Breadcrumb.Item>
                 <Breadcrumb.Item>App</Breadcrumb.Item>
             </Breadcrumb>
                 <Content style={{ background: '#fff', padding: 24, margin: 0, minHeight: 280 }}>
+                    {/* <IndexRoute path={`${match.url}`} component={factoryList}/> */}
                     <Route path={`${match.url}/factory`}  component={factoryList} />
                     <Route path={`${match.url}/workshop`} component={workshopMG} />
                     <Route path={`${match.url}/machine`} component={machineList} />

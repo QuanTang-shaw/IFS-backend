@@ -9,7 +9,7 @@ export default {
       setup({ dispatch, history }) {  // eslint-disable-line
         history.listen(({ pathname }) => {
           // console.log(pathname)
-          if (pathname === '/dev-vendor') {
+          if (pathname === '/basicData/dev-vendor') {
             Vendor_ListActive({
               "nPageIndex": 0,
               "nPageSize":-1,

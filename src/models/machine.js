@@ -11,7 +11,7 @@ export default {
       // console.log(history);
       history.listen(({ pathname }) => {
         // console.log(pathname)
-        if (pathname === '/machine') {
+        if (pathname === '/basicData/machine') {
           WorkstationListActive({
             "nPageIndex": 0,
             "nPageSize": -1,

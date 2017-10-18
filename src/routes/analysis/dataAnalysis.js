@@ -9,7 +9,7 @@ const { Header, Content, Sider } = Layout;
 import factoryList from '../factory/factoryList/factoryList';
 import machineList from '../machine/machineList';
 import factoryMap from '../factory/factoryMap/factoryMap';
-import workshopMG from '../workshop/workshopList';
+import workshopMG from '../basic/workshop/workshopList';
 import devModel from '../deviceModel/main';
 import devVendor from '../vendor/devVendor';
 import devList from '../deviceList/deviceList';
@@ -25,24 +25,24 @@ const DataAnalysis=(props)=>{
                     defaultOpenKeys={['sub1']}
                     style={{ height: '100%' }}
                     >
-                    <SubMenu key="sub1" title={<span><Icon type="user" />工作中心</span>}>
+                    <SubMenu key="sub1" title={<span><Icon type="user" />设备综合效率</span>}>
                         <Menu.Item key="1">
-                        <Link to="/basicData/factory">
+                        <Link to="/dataAnalysis/factory">
                             机械加工线
                         </Link>
                         </Menu.Item>
                         <Menu.Item key="2">
-                        <Link to="/basicData/workshop">
+                        <Link to="/dataAnalysis/workshop">
                             包装线
                         </Link>
                         </Menu.Item>
                         <Menu.Item key="3">
-                            <Link to="/basicData/machine">
+                            <Link to="/dataAnalysis/machine">
                                 焊接线
                             </Link>
                         </Menu.Item>
                     </SubMenu>
-                    <SubMenu key="sub2" title={<span><Icon type="laptop" />生产看板</span>}>
+                    <SubMenu key="sub2" title={<span><Icon type="laptop" />质量过程控制</span>}>
                         <Menu.Item key="7">设备品牌</Menu.Item>
                     </SubMenu>
                 </Menu>

@@ -1,7 +1,7 @@
 import { Table, Button ,Popconfirm,message,Modal,Form, Input, DatePicker, Col } from 'antd';
 import { connect } from 'dva';
 const FormItem = Form.Item;
-import WrappedWorkshopForm from '../../components/EditForm/workshopForm'
+import WrappedWorkshopForm from '../../../components/EditForm/workshopForm'
 
 const workshopList = function({dispatch, workshopList}){
   /* start = () => {

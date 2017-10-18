@@ -13,7 +13,7 @@ export default {
       // console.log(history);
       history.listen(({ pathname }) => {
         // console.log(pathname)
-        if (pathname === '/factory' || pathname === '/') {
+        if (pathname === '/basicData/factory' || pathname === '/') {
           FactoryListActive().then(data=>{
             console.log(data);
             if(data.obj.hasOwnProperty('objectlist')){

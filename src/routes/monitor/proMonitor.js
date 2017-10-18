@@ -9,7 +9,7 @@ const { Header, Content, Sider } = Layout;
 import factoryList from '../factory/factoryList/factoryList';
 import machineList from '../machine/machineList';
 import factoryMap from '../factory/factoryMap/factoryMap';
-import workshopMG from '../workshop/workshopList';
+import workshopMG from '../basic/workshop/workshopList';
 import devModel from '../deviceModel/main';
 import devVendor from '../vendor/devVendor';
 import devList from '../deviceList/deviceList';
@@ -27,17 +27,17 @@ const productMonitor=(props)=>{
                     >
                     <SubMenu key="sub1" title={<span><Icon type="user" />工作中心</span>}>
                         <Menu.Item key="1">
-                        <Link to="/basicData/factory">
+                        <Link to="/productMonitor/factory">
                             机械加工线
                         </Link>
                         </Menu.Item>
                         <Menu.Item key="2">
-                        <Link to="/basicData/workshop">
+                        <Link to="/productMonitor/workshop">
                             包装线
                         </Link>
                         </Menu.Item>
                         <Menu.Item key="3">
-                            <Link to="/basicData/machine">
+                            <Link to="/productMonitor/machine">
                                 焊接线
                             </Link>
                         </Menu.Item>

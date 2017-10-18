@@ -7,7 +7,7 @@ export default {
     subscriptions: {
       setup({ dispatch, history }) {  // eslint-disable-line
         history.listen(({ pathname }) => {
-          if (pathname === '/devicelist') {
+          if (pathname === '/basicData/devicelist') {
             DeviceListActive({
               "nPageIndex": 0,
 			      	"nPageSize":-1,

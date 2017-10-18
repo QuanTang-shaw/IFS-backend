@@ -10,7 +10,7 @@ export default {
     subscriptions: {
       setup({ dispatch, history }) {  // eslint-disable-line
         history.listen(({pathname})=>{
-          if (pathname === '/workshop'){
+          if (pathname === '/basicData/workshop'){
             workshopListActive({
               "nPageIndex": 0,
               "nPageSize":-1,
