@@ -2,7 +2,9 @@ import { DeviceListActive } from '../services/device'
 export default {   
     namespace: 'devicelist',   
     state: {
-        deviceTableData:[]
+        deviceTableData:[],
+        deviceEditData:[],
+        modalVisible:false,        
     },  
     subscriptions: {
       setup({ dispatch, history }) {  // eslint-disable-line
@@ -43,10 +45,17 @@ export default {
             serialNumber:ele.strDeviceSN,
             numbering:ele.strDeviceID,
             ownWorkshop:ele.strWorkshopName,
-            ownMachine:ele.strWorkstationName
+            ownMachine:ele.strWorkstationName,
+            desc:ele.strDeviceDesc
           })
         });
         return { ...state };
+      },
+      toggleModal(state,action){
+        state.modalVisible=!state.modalVisible;
+        console.log(action);
+        if(action.hasOwnProperty('editData')) state.deviceEditData=action.editData;
+        return { ...state};
       },
       updateState (state, { payload }) {
         // alert('update');

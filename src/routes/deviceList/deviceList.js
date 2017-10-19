@@ -1,11 +1,12 @@
-import { Table,Button,Popconfirm,message } from 'antd';
+import { Table, Button ,Popconfirm,message,Modal,Form, Input, DatePicker, Col } from 'antd';
 import { connect } from 'dva';
-
+const FormItem = Form.Item;
+import WrappedDeviceForm from '../../components/EditForm/deviceForm'
 
 
 const deviceList =({dispatch,deviceList})=>{
 
-    const {deviceTableData}=deviceList
+    const {deviceTableData,modalVisible}=deviceList
     const columns = [
         {
             title: '图片',
@@ -43,13 +44,13 @@ const deviceList =({dispatch,deviceList})=>{
         {
             title:'车间操作',
             // width:500,
-            render:()=>(
-              <div>
-                <Button icon="edit">编辑</Button>
+            render:(text, record, index)=>(
+            <div style={{display:'flex','justifyContent': 'space-around'}}>
+                <Button icon="edit" onClick={showModal.bind(this,record)}>编辑</Button>
                 <Popconfirm title="Are you sure delete this task?" onConfirm={confirm} onCancel={cancel} okText="Yes" cancelText="No">
-                  <Button type="danger" icon="delete">删除</Button>
+                <Button type="danger" icon="delete">删除</Button>
                 </Popconfirm>
-              </div>
+            </div>
             )
         }
     ];
@@ -99,11 +100,32 @@ const deviceList =({dispatch,deviceList})=>{
         console.log(e);
         message.error('Click on No');
     }
+    const showModal = (record,ev) => {
+        dispatch({
+            type:'devicelist/toggleModal',
+            editData:record
+        })
+    }
+    const handleOk = () => {
+        this.setState({ loading: true });
+        setTimeout(() => {
+            this.setState({ loading: false, visible: false });
+        }, 3000);
+    }
     
     return(
         <div>
             <p style={{borderBottom:'solid 2px #b7b5b3',marginBottom:'30px',fontSize:'25px'}}>设备管理</p>
             <Table rowSelection={rowSelection} columns={columns} dataSource={deviceTableData} />
+            <Modal
+                visible={modalVisible}
+                title="车间编辑"
+                onOk={handleOk}
+                onCancel={showModal}
+                footer={null}
+                >
+                <WrappedDeviceForm {...deviceList}/>
+            </Modal>
         </div>
     )
 }

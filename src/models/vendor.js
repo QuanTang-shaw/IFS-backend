@@ -3,7 +3,8 @@ import { Vendor_ListActive } from '../services/vendor'
 export default {   
     namespace: 'vendorlist',   
     state: {
-        vendorListData:[]
+        vendorListData:[],
+        vendorEditData:[],
     },  
     subscriptions: {
       setup({ dispatch, history }) {  // eslint-disable-line
@@ -42,7 +43,8 @@ export default {
             name: ele.strVendorShortName,
             EN_Name: ele.strVendorShortName_EN,
             fullName: ele.strVendorName,
-            address:ele.strVendorAddress
+            address:ele.strVendorAddress,
+            desc:ele.strVendorDesc
           })
         });
         return { ...state };
@@ -50,7 +52,7 @@ export default {
       toggleModal(state,action){
         state.modalVisible=!state.modalVisible;
         console.log(action)
-        if(action.hasOwnProperty('editData')) state.factoryEditData=action.editData;
+        if(action.hasOwnProperty('editData')) state.vendorEditData=action.editData;
         return { ...state};
       },
       updateState (state, { payload }) {

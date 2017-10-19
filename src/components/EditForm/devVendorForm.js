@@ -94,7 +94,7 @@ class VendorForm extends React.Component{
     }
 
     render() {
-        const {factoryEditData}=this.props;
+        const {vendorEditData}=this.props;
         const { getFieldDecorator} = this.props.form;
         const formItemLayout = {
             labelCol: {
@@ -131,13 +131,46 @@ class VendorForm extends React.Component{
                     {...formItemLayout}
                     label="名称"
                     hasFeedback
-                >
+                    >
                     {getFieldDecorator('name', {
                     rules: [{
                         type: 'string', message: '必须是字符串',
                     }, {
                         required: true, message: '请输入工厂名称',
                     }],
+                    initialValue:vendorEditData.name
+                    })(
+                    <Input />
+                    )}
+                </FormItem>
+                <FormItem
+                    {...formItemLayout}
+                    label="英文名称"
+                    hasFeedback
+                    >
+                    {getFieldDecorator('name', {
+                    rules: [{
+                        type: 'string', message: '必须是字符串',
+                    }, {
+                        required: true, message: '请输入工厂名称',
+                    }],
+                    initialValue:vendorEditData.EN_Name
+                    })(
+                    <Input />
+                    )}
+                </FormItem>
+                <FormItem
+                    {...formItemLayout}
+                    label="全称"
+                    hasFeedback
+                    >
+                    {getFieldDecorator('name', {
+                    rules: [{
+                        type: 'string', message: '必须是字符串',
+                    }, {
+                        required: true, message: '请输入工厂名称',
+                    }],
+                    initialValue:vendorEditData.fullName
                     })(
                     <Input />
                     )}
@@ -146,35 +179,35 @@ class VendorForm extends React.Component{
                     {...formItemLayout}
                     label="地址"
                     hasFeedback
-                >
+                    >
                     {getFieldDecorator('address', {
                     rules: [{
                         required: true, message: 'Please input your password!',
                     }, {
                         validator: this.checkConfirm,
                     }],
-                    //initialValue:factoryEditData.address
+                    initialValue:vendorEditData.address
                     })(
                     <Input/>
                     )}
                 </FormItem>
                 <FormItem
                     {...formItemLayout}
-                    label="工厂描述"
+                    label="厂商描述"
                     hasFeedback
-                >
+                    >
                     {
                         getFieldDecorator('descript', {
                             rules: [{
                                 required: true, message: 'Please confirm your password!',
                             }],
-                            //initialValue:factoryEditData.desc
+                            initialValue:vendorEditData.desc
                         })(<Input type="textarea" rows={4} />)
                     }
                 </FormItem>
                 <FormItem
                     {...formItemLayout}
-                    label="工厂图片"
+                    label="LOGO"
                     hasFeedback
                 >
                     {/* {getFieldDecorator('nickname', {

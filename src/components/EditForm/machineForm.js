@@ -40,8 +40,8 @@ class MachineForm extends React.Component{
         confirmDirty: false,
     };
     componentDidMount(){
-        // const {factoryEditData}=this.props;
-        // console.log('willmount',this.props.factoryEditData);
+        // const {machineEditData}=this.props;
+        console.log('willmount',this.props.machineEditData);
         // console.log("设置:",this.props.form.setFieldsValue);
         // this.props.form.setFieldsValue({name:factoryEditData.name});
     }
@@ -94,7 +94,7 @@ class MachineForm extends React.Component{
     }
 
     render() {
-    const {factoryEditData}=this.props;
+    const {machineEditData}=this.props;
     const { getFieldDecorator} = this.props.form;
     const formItemLayout = {
         labelCol: {
@@ -127,113 +127,106 @@ class MachineForm extends React.Component{
     );
     return (
         <Form onSubmit={this.handleSubmit}>
-        <FormItem
-            {...formItemLayout}
-            label="名称"
-            hasFeedback
-        >
-            {getFieldDecorator('name', {
-            rules: [{
-                type: 'string', message: '必须是字符串',
-            }, {
-                required: true, message: '请输入工厂名称',
-            }],
-            })(
-            <Input />
-            )}
-        </FormItem>
-        <FormItem
-            {...formItemLayout}
-            label="地址"
-            hasFeedback
-        >
-            {getFieldDecorator('address', {
-            rules: [{
-                required: true, message: 'Please input your password!',
-            }, {
-                validator: this.checkConfirm,
-            }],
-            })(
-            <Input/>
-            )}
-        </FormItem>
-        <FormItem
-            {...formItemLayout}
-            label="工厂描述"
-            hasFeedback
-        >
-            {
-                getFieldDecorator('descript', {
-                    rules: [{
-                        required: true, message: 'Please confirm your password!',
-                    }],
-                    //initialValue:factoryEditData.desc
-                })(<Input type="textarea" rows={4} />)
-            }
-        </FormItem>
-        <FormItem
-            {...formItemLayout}
-            label="工厂图片"
-            hasFeedback
-        >
-            {/* {getFieldDecorator('nickname', {
-            rules: [{ required: true, message: 'Please input your nickname!' }],
-            })(
-            )} */}
-            <Avatar/>
-        </FormItem>
-       {/*  <FormItem
-            {...formItemLayout}
-            label="Habitual Residence"
-        >
-            {getFieldDecorator('residence', {
-            initialValue: ['zhejiang', 'hangzhou', 'xihu'],
-            rules: [{ type: 'array', required: true, message: 'Please select your habitual residence!' }],
-            })(
-            <Cascader options={residences} />
-            )}
-        </FormItem>
-        <FormItem
-            {...formItemLayout}
-            label="Phone Number"
-        >
-            {getFieldDecorator('phone', {
-            rules: [{ required: true, message: 'Please input your phone number!' }],
-            })(
-            <Input addonBefore={prefixSelector} />
-            )}
-        </FormItem>
-        <FormItem
-            {...formItemLayout}
-            label="Captcha"
-            extra="We must make sure that your are a human."
-        >
-            <Row gutter={8}>
-            <Col span={12}>
-                {getFieldDecorator('captcha', {
-                rules: [{ required: true, message: 'Please input the captcha you got!' }],
-                })(
-                <Input size="large" />
+            <FormItem
+                {...formItemLayout}
+                label="编号"
+                hasFeedback
+                >
+                {getFieldDecorator('name', {
+                rules: [{
+                    type: 'string', message: '必须是字符串',
+                }, {
+                    required: true, message: '请输入工厂名称',
+                }],
+                initialValue:machineEditData.numbering              
+                }
+                )(
+                <Input />
                 )}
-            </Col>
-            <Col span={12}>
-                <Button size="large">Get captcha</Button>
-            </Col>
-            </Row>
-        </FormItem>
-        <FormItem {...tailFormItemLayout} style={{ marginBottom: 8 }}>
-            {getFieldDecorator('agreement', {
-            valuePropName: 'checked',
-            })(
-            <Checkbox>I have read the <a>agreement</a></Checkbox>
-            )}
-        </FormItem>
-        <FormItem {...tailFormItemLayout}>
-            <Button type="primary" htmlType="submit" size="large">Register</Button>
-        </FormItem> */
-        }
-        <Button onClick={this.handleSubmit}>提交</Button>
-        <Button onClick={this.resetForm}>重置</Button>
+            </FormItem>
+            <FormItem
+                {...formItemLayout}
+                label="名称"
+                hasFeedback
+                >
+                {getFieldDecorator('address', {
+                rules: [{
+                    required: true, message: 'Please input your password!',
+                }, {
+                    validator: this.checkConfirm,
+                }],
+                initialValue:machineEditData.name              
+                })(
+                <Input/>
+                )}
+            </FormItem>
+            <FormItem
+                {...formItemLayout}
+                label="机台主管"
+                hasFeedback
+                >
+                {getFieldDecorator('charge', {
+                rules: [{
+                    type: 'string', message: '必须是字符串',
+                }, {
+                    required: true, message: '请输入工厂名称',
+                }],
+                })(
+                <Select  onChange={this.handleChange}>
+                    <Option value="jack">张三</Option>
+                    <Option value="lucy">李四</Option>
+                    <Option value="disabled">王五</Option>
+                    <Option value="Yiminghe">赵六</Option>
+                </Select>
+                )}
+            </FormItem>      
+            <FormItem
+                {...formItemLayout}
+                label="机台类型"
+                hasFeedback
+                >
+                {getFieldDecorator('workshopType', {
+                rules: [{
+                    type: 'string', message: '必须是字符串',
+                }, {
+                    required: true, message: '请输入工厂名称',
+                }],
+                })(
+                <Select   onChange={this.handleChange}>
+                    <Option value="jack">注塑车间</Option>
+                    <Option value="lucy">回收车间</Option>
+                    <Option value="disabled">包装车间</Option>
+                    <Option value="Yiminghe">运输车间</Option>
+                </Select>
+                )}
+            </FormItem>  
+            <FormItem
+                {...formItemLayout}
+                label="工厂描述"
+                hasFeedback
+                >
+                {
+                    getFieldDecorator('descript', {
+                        rules: [{
+                            required: true, message: 'Please confirm your password!',
+                        }],
+                        initialValue:machineEditData.desc
+                    })(<Input type="textarea" rows={4} />)
+                }
+            </FormItem>
+            <FormItem
+                {...formItemLayout}
+                label="工厂图片"
+                hasFeedback
+                >
+                {/* {getFieldDecorator('nickname', {
+                rules: [{ required: true, message: 'Please input your nickname!' }],
+                })(
+                )} */}
+                <Avatar/>
+            </FormItem>
+            <Button onClick={this.handleSubmit}>提交</Button>
+            <Button onClick={this.resetForm}>重置</Button>
         </Form>
     );
     }

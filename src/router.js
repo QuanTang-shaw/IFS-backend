@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Router, Route, IndexRoute ,routerRedux ,Redirect } from 'dva/router';
+const { ConnectedRouter } = routerRedux;
 // import dynamic from 'dva/dynamic';
 
 /* import IndexPage from './routes/IndexPage';
@@ -17,7 +18,6 @@ import basicData from './routes/basic/basicData';
 import productMonitor from './routes/monitor/proMonitor';
 import DataAnalysis from './routes/analysis/dataAnalysis';
 // import example from './models/example'
-const { ConnectedRouter } = routerRedux;
 function RouterConfig({ history, app }) {
 
   return (

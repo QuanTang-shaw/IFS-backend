@@ -3,6 +3,7 @@ export default {
     namespace: 'workshop',
     state: {
       dataList:[],
+      workshopEditData:[],
       selectedRowKeys: [],
       modalVisible:false,
       loading: false,
@@ -46,7 +47,8 @@ export default {
             numbering: ele.strWorkshopID,
             name: ele.strWorkshopName,
             principal: `John snow`,
-            workshopType:ele.strWorkshopTypeName
+            workshopType:ele.strWorkshopTypeName,
+            desc:ele.strWorkshopDesc
           })
         });
         return { ...state };
@@ -54,7 +56,7 @@ export default {
       toggleModal(state,action){
         state.modalVisible=!state.modalVisible;
         console.log(action)
-        if(action.hasOwnProperty('editData')) state.factoryEditData=action.editData;
+        if(action.hasOwnProperty('editData')) state.workshopEditData=action.editData;
         return { ...state};
       },
       save(state, action) {

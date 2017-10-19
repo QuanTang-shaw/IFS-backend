@@ -3,6 +3,7 @@
 const webpack = require('webpack')
 
 module.exports = (webpackConfig, env) => {
+  console.log(webpackConfig)
  /*  const production = env === 'production'
   // FilenameHash
   webpackConfig.output.chunkFilename = '[name].[chunkhash].js'

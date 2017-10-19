@@ -82,13 +82,14 @@ const basicData=(props)=>{
                 <Breadcrumb.Item>App</Breadcrumb.Item>
             </Breadcrumb>
                 <Content style={{ background: '#fff', padding: 24, margin: 0, minHeight: 280 }}>
-                    {/* <IndexRoute path={`${match.url}`} component={factoryList}/> */}
-                    <Route path={`${match.url}/factory`}  component={factoryList} />
-                    <Route path={`${match.url}/workshop`} component={workshopMG} />
-                    <Route path={`${match.url}/machine`} component={machineList} />
-                    <Route path={`${match.url}/devcategory`} component={devModel} />
-                    <Route path={`${match.url}/dev-vendor`} component={devVendor} />
-                    <Route path={`${match.url}/devicelist`} component={devList} />
+                    <Switch>
+                        <Route path={`${match.url}/factory`}  component={factoryList} />
+                        <Route path={`${match.url}/workshop`} component={workshopMG} />
+                        <Route path={`${match.url}/machine`} component={machineList} />
+                        <Route path={`${match.url}/devcategory`} component={devModel} />
+                        <Route path={`${match.url}/dev-vendor`} component={devVendor} />
+                        <Route path={`${match.url}/devicelist`} component={devList} />
+                    </Switch>                    
                 </Content>
             </Layout>
         </div>

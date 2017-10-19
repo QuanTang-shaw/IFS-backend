@@ -3,6 +3,7 @@ export default {
   namespace: 'machinelist',
   state: {
     machineTableData:[],
+    machineEditData:[],
     modalVisible:false,
     modalLoading:false
   },
@@ -44,13 +45,18 @@ export default {
             numbering: ele.strWorkstationID,
             name: ele.strWorkstationName,
             principal: `John snow`,
-            machineType:ele.strWorkstationTypeName
+            machineType:ele.strWorkstationTypeName,
+            desc:ele.strWorkstationDesc
           })
         });
         return { ...state };
     },
-    toggleModal(state){
+    toggleModal(state,action){
+      // state.modalVisible=!state.modalVisible;
+      // return { ...state};
+      console.log(action)
       state.modalVisible=!state.modalVisible;
+      if(action.hasOwnProperty('editData')) state.machineEditData=action.editData;
       return { ...state};
     },
     save(state, action) {

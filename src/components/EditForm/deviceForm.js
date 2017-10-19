@@ -6,32 +6,7 @@ const Option = Select.Option;
 import Avatar from './UpLoad.js'
 
 
-const residences = [{
-    value: 'zhejiang',
-    label: 'Zhejiang',
-    children: [{
-      value: 'hangzhou',
-      label: 'Hangzhou',
-      children: [{
-        value: 'xihu',
-        label: 'West Lake',
-      }],
-    }],
-  }, {
-    value: 'jiangsu',
-    label: 'Jiangsu',
-    children: [{
-      value: 'nanjing',
-      label: 'Nanjing',
-      children: [{
-        value: 'zhonghuamen',
-        label: 'Zhong Hua Men',
-      }],
-    }],
-  }];
-// const FactoryForm=(props)=>
-class WorkshopForm extends React.Component{
-    // console.log(props)
+class DeviceForm extends React.Component{
     constructor(props) {
         super(props);
         // console.log("来自继承:",props);
@@ -40,10 +15,10 @@ class WorkshopForm extends React.Component{
         confirmDirty: false,
     };
     componentDidMount(){
-        // const {workshopEditData}=this.props;
+        // const {deviceEditData}=this.props;
         console.log('willmount',this.props);
         // console.log("设置:",this.props.form.setFieldsValue);
-        // this.props.form.setFieldsValue({name:workshopEditData.name});
+        // this.props.form.setFieldsValue({name:deviceEditData.name});
     }
     handleSubmit = (e) => {
         e.preventDefault();
@@ -83,11 +58,6 @@ class WorkshopForm extends React.Component{
       }
       callback();
     }
-    getValue=()=>{
-        const { getFieldsValue} = this.props.form;
-        // alert('get');
-        console.log(getFieldsValue())
-    }
     resetForm=()=>{
         const { resetFields} = this.props.form;
         resetFields();
@@ -95,9 +65,8 @@ class WorkshopForm extends React.Component{
     handleChange(value) {
         console.log(`selected ${value}`);
     }
-
     render() {
-    const {workshopEditData}=this.props;
+    const {deviceEditData}=this.props;
     const { getFieldDecorator} = this.props.form;
     const formItemLayout = {
         labelCol: {
@@ -132,7 +101,7 @@ class WorkshopForm extends React.Component{
         <Form onSubmit={this.handleSubmit}>
             <FormItem
                 {...formItemLayout}
-                label="编号"
+                label="名称"
                 hasFeedback
                 >
                 {getFieldDecorator('address', {
@@ -141,14 +110,14 @@ class WorkshopForm extends React.Component{
                 }, {
                     validator: this.checkConfirm,
                 }],
-                initialValue:workshopEditData.numbering
+                initialValue:deviceEditData.name
                 })(
                 <Input/>
                 )}
             </FormItem>
             <FormItem
                 {...formItemLayout}
-                label="名称"
+                label="编号"
                 hasFeedback
                 >
                 {getFieldDecorator('name', {
@@ -157,7 +126,23 @@ class WorkshopForm extends React.Component{
                 }, {
                     required: true, message: '请输入工厂名称',
                 }],
-                initialValue:workshopEditData.name
+                initialValue:deviceEditData.numbering
+                })(
+                <Input />
+                )}
+            </FormItem>
+            <FormItem
+                {...formItemLayout}
+                label="序列号"
+                hasFeedback
+                >
+                {getFieldDecorator('name', {
+                rules: [{
+                    type: 'string', message: '必须是字符串',
+                }, {
+                    required: true, message: '请输入工厂名称',
+                }],
+                initialValue:deviceEditData.serialNumber
                 })(
                 <Input />
                 )}
@@ -212,7 +197,7 @@ class WorkshopForm extends React.Component{
                         rules: [{
                             required: true, message: 'Please confirm your password!',
                         }],
-                        initialValue:workshopEditData.desc
+                        initialValue:deviceEditData.desc
                     })(<Input type="textarea" rows={4} />)
                 }
             </FormItem>
@@ -233,6 +218,5 @@ class WorkshopForm extends React.Component{
     );
     }
 }
-const WrappedWorkshopForm = Form.create({})(WorkshopForm);
-// export default WrappedFactoryForm;
-export default connect()(WrappedWorkshopForm);
+const WrappedDeviceForm = Form.create({})(DeviceForm);
+export default connect()(WrappedDeviceForm);
