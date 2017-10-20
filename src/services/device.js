@@ -15,3 +15,11 @@ export const  DevcategoryListActive = async function(obj){
               obj);
      return result;
 }
+
+export const  DevModelListActive = async function(obj){
+    var result = await get(
+              "Handler_DevModel_V1.ashx",
+              "DevModel_ListActive",
+              obj);
+     return result;
+}

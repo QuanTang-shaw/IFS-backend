@@ -10,7 +10,7 @@ import factoryList from '../factory/factoryList/factoryList';
 import machineList from '../machine/machineList';
 import factoryMap from '../factory/factoryMap/factoryMap';
 import workshopMG from './workshop/workshopList';
-import devModel from '../deviceModel/main';
+import devModel from '../deviceModel/model';
 import devVendor from '../vendor/devVendor';
 import devList from '../deviceList/deviceList';
 import DeviceType from './devType/deviceType';
@@ -71,7 +71,7 @@ const basicData=(props)=>{
                             </Link>
                         </Menu.Item>
                         <Menu.Item key="9">
-                            <Link to="/basicData/devcategory">
+                            <Link to="/basicData/dev-model">
                                 设备型号
                             </Link>  
                         </Menu.Item>
@@ -92,10 +92,10 @@ const basicData=(props)=>{
                         <Route path={`${match.url}/factory`}  component={factoryList} />
                         <Route path={`${match.url}/workshop`} component={workshopMG} />
                         <Route path={`${match.url}/machine`} component={machineList} />
-                        <Route path={`${match.url}/devcategory`} component={devModel} />
                         <Route path={`${match.url}/pline`} component={pLine} />
                         <Route path={`${match.url}/dev-vendor`} component={devVendor} />
                         <Route path={`${match.url}/dev-type`} component={DeviceType} />
+                        <Route path={`${match.url}/dev-model`} component={devModel} />
                         <Route path={`${match.url}/devicelist`} component={devList} />
                     </Switch>                    
                 </Content>

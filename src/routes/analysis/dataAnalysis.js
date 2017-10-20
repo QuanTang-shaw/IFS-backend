@@ -10,7 +10,7 @@ import factoryList from '../factory/factoryList/factoryList';
 import machineList from '../machine/machineList';
 import factoryMap from '../factory/factoryMap/factoryMap';
 import workshopMG from '../basic/workshop/workshopList';
-import devModel from '../deviceModel/main';
+import devModel from '../deviceModel/model';
 import devVendor from '../vendor/devVendor';
 import devList from '../deviceList/deviceList';
 const DataAnalysis=(props)=>{
