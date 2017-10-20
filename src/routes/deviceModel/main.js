@@ -42,7 +42,7 @@ const devModel=({dispatch,devCategory})=>{
     return(
         <div className={styles.wrap}>
             <div className={styles.nav}>
-                <Category {...categoryProp}/>
+                {/* <Category {...categoryProp}/> */}
             </div>
             <div className={styles.model}>
                 <Model {...modelProp} />

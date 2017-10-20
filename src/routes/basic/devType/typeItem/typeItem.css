@@ -1,0 +1,16 @@
+
+
+.wrapItem{
+    border-bottom:solid 1px#D0D0D3;    
+    padding:10px 8px;
+    cursor: pointer;
+    font-size:25px;
+}
+.wrapItem:hover{
+    background-color: #F1EEEE;
+}
+.icon{
+    float:right;
+    line-height: 40px;
+    /* font-size:25px; */
+}

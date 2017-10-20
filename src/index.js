@@ -15,6 +15,7 @@ const app = dva({
 // app.use({});
 // 3. Model
 app.model(require('./models/app'));
+app.model(require('./models/basicData'));
 app.model(require('./models/factory'));
 app.model(require('./models/workshop'));
 app.model(require('./models/machine'));

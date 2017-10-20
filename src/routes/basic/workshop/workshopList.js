@@ -4,16 +4,6 @@ const FormItem = Form.Item;
 import WrappedWorkshopForm from '../../../components/EditForm/workshopForm'
 
 const workshopList = function({dispatch, workshopList}){
-  /* start = () => {
-    this.setState({ loading: true });
-    // ajax request after empty completing
-    setTimeout(() => {
-      this.setState({
-        selectedRowKeys: [],
-        loading: false,
-      });
-    }, 1000);
-  } */
   // console.log( workshopList)
   const showModal = (record,ev) => {
     // console.log(record)

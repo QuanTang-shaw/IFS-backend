@@ -13,6 +13,8 @@ import workshopMG from './workshop/workshopList';
 import devModel from '../deviceModel/main';
 import devVendor from '../vendor/devVendor';
 import devList from '../deviceList/deviceList';
+import DeviceType from './devType/deviceType';
+import pLine from './pLine/productLine';
 const basicData=(props)=>{
     // console.log(props);
     const {match}=props
@@ -42,7 +44,7 @@ const basicData=(props)=>{
                             </Link>
                         </Menu.Item>
                         <Menu.Item key="4">
-                            <Link to="/basicData/devcategory">
+                            <Link to="/basicData/pline">
                                 产线管理
                             </Link>
                         </Menu.Item>
@@ -64,11 +66,15 @@ const basicData=(props)=>{
                             </Link>
                         </Menu.Item>
                         <Menu.Item key="8">
-                            <Link to="/basicData/devcategory">
+                            <Link to="/basicData/dev-type">
                                 设备类别
                             </Link>
                         </Menu.Item>
-                        <Menu.Item key="9">设备型号</Menu.Item>
+                        <Menu.Item key="9">
+                            <Link to="/basicData/devcategory">
+                                设备型号
+                            </Link>  
+                        </Menu.Item>
                     </SubMenu>
                     <SubMenu key="sub3" title={<span><Icon type="notification" />工作中心管理</span>}>
                         <Menu.Item key="10">option10</Menu.Item>
@@ -87,7 +93,9 @@ const basicData=(props)=>{
                         <Route path={`${match.url}/workshop`} component={workshopMG} />
                         <Route path={`${match.url}/machine`} component={machineList} />
                         <Route path={`${match.url}/devcategory`} component={devModel} />
+                        <Route path={`${match.url}/pline`} component={pLine} />
                         <Route path={`${match.url}/dev-vendor`} component={devVendor} />
+                        <Route path={`${match.url}/dev-type`} component={DeviceType} />
                         <Route path={`${match.url}/devicelist`} component={devList} />
                     </Switch>                    
                 </Content>

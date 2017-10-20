@@ -1,0 +1,18 @@
+.wrap{
+   /* border:solid 1px; */
+   /* height: 100%; */
+}
+.content,.nav{
+}
+.content{
+    border:solid 1px #D0D0D3;
+    min-height: 400px;
+}
+.nav{
+    /* height: 400px; */
+    border-right: solid 1px #D0D0D3;    
+}
+.navHead{
+    height:50px;
+    border-bottom: solid 1px #D0D0D3;
+}
