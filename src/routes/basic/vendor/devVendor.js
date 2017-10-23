@@ -1,16 +1,15 @@
-import { Table, Button ,Popconfirm,message,Modal,Form, Input, DatePicker, Col } from 'antd';
+import { Table,Button,Popconfirm,message,Modal,Form, Input, DatePicker, Col } from 'antd';
 import { connect } from 'dva';
-const FormItem = Form.Item;
-import WrappedDeviceForm from '../../components/EditForm/deviceForm'
+import WrappedVendorForm from '../../../components/EditForm/devVendorForm'
 
 
-const deviceList =({dispatch,deviceList})=>{
+const devVendorList =({dispatch,vendorList})=>{
 
-    const {deviceTableData,modalVisible}=deviceList
+    const {vendorListData,modalVisible}=vendorList
     const columns = [
         {
-            title: '图片',
-            dataIndex: 'picture',
+            title: 'LOGO',
+            dataIndex: 'logo',
             // render: text => <a href="#">{text}</a>,
         }, 
         {
@@ -18,39 +17,27 @@ const deviceList =({dispatch,deviceList})=>{
             dataIndex: 'name',
         }, 
         {
-            title: '品牌',
-            dataIndex: 'vendor',
+            title: '英文名称',
+            dataIndex: 'EN_Name',
         },
         {
-            title: '型号',
-            dataIndex: 'model',
+            title: '全称',
+            dataIndex: 'fullName',
         },
         {
-            title: '序列号',
-            dataIndex: 'serialNumber',
+            title: '所在地',
+            dataIndex: 'address',
         },
         {
-            title: '编号',
-            dataIndex: 'numbering',
-        },
-        {
-            title: '所属车间',
-            dataIndex: 'ownWorkshop',
-        },
-        {
-            title: '所属机台',
-            dataIndex: 'ownMachine',
-        },
-        {
-            title:'车间操作',
-            // width:500,
+            title: '操作',
+            key: 'action',
             render:(text, record, index)=>(
-            <div style={{display:'flex','justifyContent': 'space-around'}}>
+              <div style={{display:'flex','justifyContent': 'space-around'}}>
                 <Button icon="edit" onClick={showModal.bind(this,record)}>编辑</Button>
                 <Popconfirm title="Are you sure delete this task?" onConfirm={confirm} onCancel={cancel} okText="Yes" cancelText="No">
-                <Button type="danger" icon="delete">删除</Button>
+                  <Button type="danger" icon="delete">删除</Button>
                 </Popconfirm>
-            </div>
+              </div>
             )
         }
     ];
@@ -101,8 +88,9 @@ const deviceList =({dispatch,deviceList})=>{
         message.error('Click on No');
     }
     const showModal = (record,ev) => {
+        // console.log(record)
         dispatch({
-            type:'devicelist/toggleModal',
+            type:'vendorlist/toggleModal',
             editData:record
         })
     }
@@ -112,26 +100,25 @@ const deviceList =({dispatch,deviceList})=>{
             this.setState({ loading: false, visible: false });
         }, 3000);
     }
-    
     return(
         <div>
-            <p style={{borderBottom:'solid 2px #b7b5b3',marginBottom:'30px',fontSize:'25px'}}>设备管理</p>
-            <Table rowSelection={rowSelection} columns={columns} dataSource={deviceTableData} />
+            <p style={{borderBottom:'solid 2px #b7b5b3',marginBottom:'30px',fontSize:'25px'}}>厂商管理</p>
+            <Table rowSelection={rowSelection} columns={columns} dataSource={vendorListData} />
             <Modal
                 visible={modalVisible}
-                title="车间编辑"
+                title="工厂编辑"
                 onOk={handleOk}
                 onCancel={showModal}
                 footer={null}
-                >
-                <WrappedDeviceForm {...deviceList}/>
+            >
+                <WrappedVendorForm {...vendorList}/>
             </Modal>
         </div>
     )
 }
 function mapStateToProps(state, ownProps) {
     return {
-      deviceList: state.devicelist
+      vendorList: state.vendorlist
     };
   }
-  export default connect(mapStateToProps)(deviceList);
+  export default connect(mapStateToProps)(devVendorList);

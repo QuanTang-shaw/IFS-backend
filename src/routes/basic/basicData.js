@@ -6,13 +6,13 @@ import { Switch, Router, Route, IndexRoute ,routerRedux ,Redirect } from 'dva/ro
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
-import factoryList from '../factory/factoryList/factoryList';
-import machineList from '../machine/machineList';
-import factoryMap from '../factory/factoryMap/factoryMap';
+import factoryList from './factory/factoryList';
 import workshopMG from './workshop/workshopList';
-import devModel from '../deviceModel/model';
-import devVendor from '../vendor/devVendor';
-import devList from '../deviceList/deviceList';
+import machineList from './machine/machineList';
+import factoryMap from './factory/factoryMap';
+import devModel from './deviceModel/model';
+import devVendor from './vendor/devVendor';
+import devList from './deviceList/deviceList';
 import DeviceType from './devType/deviceType';
 import pLine from './pLine/productLine';
 const basicData=(props)=>{

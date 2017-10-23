@@ -1,43 +1,38 @@
 import { Table,Button,Popconfirm,message,Modal,Form, Input, DatePicker, Col } from 'antd';
 import { connect } from 'dva';
-import WrappedVendorForm from '../../components/EditForm/devVendorForm'
 
+import WrappedMachineForm from '../../../components/EditForm/machineForm'
+const machineList =({dispatch,machineList})=>{
 
-const devVendorList =({dispatch,vendorList})=>{
-
-    const {vendorListData,modalVisible}=vendorList
+    const {machineTableData,modalVisible}=machineList
     const columns = [
         {
-            title: 'LOGO',
-            dataIndex: 'logo',
+            title: '机台编号',
+            dataIndex: 'numbering',
             // render: text => <a href="#">{text}</a>,
-        }, 
+        },
         {
-            title: '名称',
+            title: '机台名称',
             dataIndex: 'name',
         }, 
         {
-            title: '英文名称',
-            dataIndex: 'EN_Name',
+            title: '机台主管',
+            dataIndex: 'principal',
         },
         {
-            title: '全称',
-            dataIndex: 'fullName',
+            title: '机台类型',
+            dataIndex: 'machineType',
         },
         {
-            title: '所在地',
-            dataIndex: 'address',
-        },
-        {
-            title: '操作',
-            key: 'action',
+            title:'车间操作',
+            width:300,
             render:(text, record, index)=>(
-              <div style={{display:'flex','justifyContent': 'space-around'}}>
-                <Button icon="edit" onClick={showModal.bind(this,record)}>编辑</Button>
-                <Popconfirm title="Are you sure delete this task?" onConfirm={confirm} onCancel={cancel} okText="Yes" cancelText="No">
-                  <Button type="danger" icon="delete">删除</Button>
-                </Popconfirm>
-              </div>
+                <div style={{display:'flex','justifyContent': 'space-around'}}>
+                    <Button icon="edit" onClick={showModal.bind(this,record)}>编辑</Button>
+                    <Popconfirm title="Are you sure delete this task?" onConfirm={confirm} onCancel={cancel} okText="Yes" cancelText="No">
+                        <Button type="danger" icon="delete">删除</Button>
+                    </Popconfirm>
+                </div>
             )
         }
     ];
@@ -89,8 +84,9 @@ const devVendorList =({dispatch,vendorList})=>{
     }
     const showModal = (record,ev) => {
         // console.log(record)
+        // console.log(ev)
         dispatch({
-            type:'vendorlist/toggleModal',
+            type:'machinelist/toggleModal',
             editData:record
         })
     }
@@ -100,10 +96,11 @@ const devVendorList =({dispatch,vendorList})=>{
             this.setState({ loading: false, visible: false });
         }, 3000);
     }
+    
     return(
         <div>
-            <p style={{borderBottom:'solid 2px #b7b5b3',marginBottom:'30px',fontSize:'25px'}}>厂商管理</p>
-            <Table rowSelection={rowSelection} columns={columns} dataSource={vendorListData} />
+            <p style={{borderBottom:'solid 2px #b7b5b3',marginBottom:'30px',fontSize:'25px'}}>机台管理</p>
+            <Table rowSelection={rowSelection} columns={columns} dataSource={machineTableData} />
             <Modal
                 visible={modalVisible}
                 title="工厂编辑"
@@ -111,14 +108,14 @@ const devVendorList =({dispatch,vendorList})=>{
                 onCancel={showModal}
                 footer={null}
             >
-                <WrappedVendorForm {...vendorList}/>
+                <WrappedMachineForm {...machineList}/>
             </Modal>
         </div>
     )
 }
 function mapStateToProps(state, ownProps) {
     return {
-      vendorList: state.vendorlist
+      machineList: state.machinelist
     };
   }
-  export default connect(mapStateToProps)(devVendorList);
+export default connect(mapStateToProps)(machineList);

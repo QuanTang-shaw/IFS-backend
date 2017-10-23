@@ -2,7 +2,7 @@ import React from 'react';
 import { Table, Button ,Popconfirm,message,Modal,Form, Input, DatePicker, Col} from 'antd';
 import { connect } from 'dva';
 const FormItem = Form.Item;
-import WrappedFactoryForm from '../../components/EditForm/factoryForm'
+import WrappedFactoryForm from '../../../components/EditForm/factoryForm'
 // console.log(WrappedFactoryForm)
 const DevModel = function ({dispatch, basicData}) {
   // console.log(basicData);

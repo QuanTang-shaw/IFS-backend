@@ -6,13 +6,13 @@ import { Switch, Router, Route, IndexRoute ,routerRedux ,Redirect } from 'dva/ro
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
-import factoryList from '../factory/factoryList/factoryList';
-import machineList from '../machine/machineList';
-import factoryMap from '../factory/factoryMap/factoryMap';
 import workshopMG from '../basic/workshop/workshopList';
-import devModel from '../deviceModel/model';
-import devVendor from '../vendor/devVendor';
-import devList from '../deviceList/deviceList';
+// import machineLine from './OEEData/proMachineLine';
+// import machineList from '../machine/machineList';
+// import factoryMap from '../factory/factoryMap/factoryMap';
+// import devModel from '../deviceModel/model';
+// import devVendor from '../vendor/devVendor';
+// import devList from '../deviceList/deviceList';
 const DataAnalysis=(props)=>{
     console.log(props)
     const {match}=props
@@ -27,7 +27,7 @@ const DataAnalysis=(props)=>{
                     >
                     <SubMenu key="sub1" title={<span><Icon type="user" />设备综合效率</span>}>
                         <Menu.Item key="1">
-                        <Link to="/dataAnalysis/factory">
+                        <Link to="/dataAnalysis/machine-line">
                             机械加工线
                         </Link>
                         </Menu.Item>
@@ -54,12 +54,12 @@ const DataAnalysis=(props)=>{
                 <Breadcrumb.Item>App</Breadcrumb.Item>
             </Breadcrumb>
                 <Content style={{ background: '#fff', padding: 24, margin: 0, minHeight: 280 }}>
-                    <Route path={`${match.url}/factory`}  component={factoryList} />
+                    <Route path={`${match.url}/machine-line`}  component={workshopMG} />
                     <Route path={`${match.url}/workshop`} component={workshopMG} />
-                    <Route path={`${match.url}/machine`} component={machineList} />
-                    <Route path={`${match.url}/devcategory`} component={devModel} />
-                    <Route path={`${match.url}/dev-vendor`} component={devVendor} />
-                    <Route path={`${match.url}/devicelist`} component={devList} />
+                    <Route path={`${match.url}/machine`} component={workshopMG} />
+                    <Route path={`${match.url}/devcategory`} component={workshopMG} />
+                    <Route path={`${match.url}/dev-vendor`} component={workshopMG} />
+                    <Route path={`${match.url}/devicelist`} component={workshopMG} />
                 </Content>
             </Layout>
         </div>

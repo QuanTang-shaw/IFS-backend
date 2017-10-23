@@ -1,38 +1,56 @@
-import { Table,Button,Popconfirm,message,Modal,Form, Input, DatePicker, Col } from 'antd';
+import { Table, Button ,Popconfirm,message,Modal,Form, Input, DatePicker, Col } from 'antd';
 import { connect } from 'dva';
+const FormItem = Form.Item;
+import WrappedDeviceForm from '../../../components/EditForm/deviceForm'
 
-import WrappedMachineForm from '../../components/EditForm/machineForm'
-const machineList =({dispatch,machineList})=>{
 
-    const {machineTableData,modalVisible}=machineList
+const deviceList =({dispatch,deviceList})=>{
+
+    const {deviceTableData,modalVisible}=deviceList
     const columns = [
         {
-            title: '机台编号',
-            dataIndex: 'numbering',
+            title: '图片',
+            dataIndex: 'picture',
             // render: text => <a href="#">{text}</a>,
-        },
+        }, 
         {
-            title: '机台名称',
+            title: '名称',
             dataIndex: 'name',
         }, 
         {
-            title: '机台主管',
-            dataIndex: 'principal',
+            title: '品牌',
+            dataIndex: 'vendor',
         },
         {
-            title: '机台类型',
-            dataIndex: 'machineType',
+            title: '型号',
+            dataIndex: 'model',
+        },
+        {
+            title: '序列号',
+            dataIndex: 'serialNumber',
+        },
+        {
+            title: '编号',
+            dataIndex: 'numbering',
+        },
+        {
+            title: '所属车间',
+            dataIndex: 'ownWorkshop',
+        },
+        {
+            title: '所属机台',
+            dataIndex: 'ownMachine',
         },
         {
             title:'车间操作',
-            width:300,
+            // width:500,
             render:(text, record, index)=>(
-                <div style={{display:'flex','justifyContent': 'space-around'}}>
-                    <Button icon="edit" onClick={showModal.bind(this,record)}>编辑</Button>
-                    <Popconfirm title="Are you sure delete this task?" onConfirm={confirm} onCancel={cancel} okText="Yes" cancelText="No">
-                        <Button type="danger" icon="delete">删除</Button>
-                    </Popconfirm>
-                </div>
+            <div style={{display:'flex','justifyContent': 'space-around'}}>
+                <Button icon="edit" onClick={showModal.bind(this,record)}>编辑</Button>
+                <Popconfirm title="Are you sure delete this task?" onConfirm={confirm} onCancel={cancel} okText="Yes" cancelText="No">
+                <Button type="danger" icon="delete">删除</Button>
+                </Popconfirm>
+            </div>
             )
         }
     ];
@@ -83,10 +101,8 @@ const machineList =({dispatch,machineList})=>{
         message.error('Click on No');
     }
     const showModal = (record,ev) => {
-        // console.log(record)
-        // console.log(ev)
         dispatch({
-            type:'machinelist/toggleModal',
+            type:'devicelist/toggleModal',
             editData:record
         })
     }
@@ -99,23 +115,23 @@ const machineList =({dispatch,machineList})=>{
     
     return(
         <div>
-            <p style={{borderBottom:'solid 2px #b7b5b3',marginBottom:'30px',fontSize:'25px'}}>机台管理</p>
-            <Table rowSelection={rowSelection} columns={columns} dataSource={machineTableData} />
+            <p style={{borderBottom:'solid 2px #b7b5b3',marginBottom:'30px',fontSize:'25px'}}>设备管理</p>
+            <Table rowSelection={rowSelection} columns={columns} dataSource={deviceTableData} />
             <Modal
                 visible={modalVisible}
-                title="工厂编辑"
+                title="车间编辑"
                 onOk={handleOk}
                 onCancel={showModal}
                 footer={null}
-            >
-                <WrappedMachineForm {...machineList}/>
+                >
+                <WrappedDeviceForm {...deviceList}/>
             </Modal>
         </div>
     )
 }
 function mapStateToProps(state, ownProps) {
     return {
-      machineList: state.machinelist
+      deviceList: state.devicelist
     };
   }
-export default connect(mapStateToProps)(machineList);
+  export default connect(mapStateToProps)(deviceList);
