@@ -4,9 +4,9 @@ const FormItem = Form.Item;
 import WrappedDeviceForm from '../../../components/EditForm/deviceForm'
 
 
-const deviceList =({dispatch,deviceList})=>{
-
-    const {deviceTableData,modalVisible}=deviceList
+const deviceList =(props)=>{
+    const {dispatch,deviceList,basicData}=props
+    const {deviceTableData,modalVisible}=basicData
     const columns = [
         {
             title: '图片',
@@ -54,27 +54,6 @@ const deviceList =({dispatch,deviceList})=>{
             )
         }
     ];
-    const data = [{
-        key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-      }, {
-        key: '2',
-        name: 'Jim Green',
-        age: 42,
-        address: 'London No. 1 Lake Park',
-      }, {
-        key: '3',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sidney No. 1 Lake Park',
-      }, {
-        key: '4',
-        name: 'Disabled User',
-        age: 99,
-        address: 'Sidney No. 1 Lake Park',
-    }];
     const rowSelection = {
         onChange: (selectedRowKeys, selectedRows) => {
             console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
@@ -102,8 +81,9 @@ const deviceList =({dispatch,deviceList})=>{
     }
     const showModal = (record,ev) => {
         dispatch({
-            type:'devicelist/toggleModal',
-            editData:record
+            type:'basicData/toggleModal',
+            editData:record,
+            dataPath:'deviceEditData'
         })
     }
     const handleOk = () => {
@@ -124,14 +104,15 @@ const deviceList =({dispatch,deviceList})=>{
                 onCancel={showModal}
                 footer={null}
                 >
-                <WrappedDeviceForm {...deviceList}/>
+                <WrappedDeviceForm {...basicData}/>
             </Modal>
         </div>
     )
 }
 function mapStateToProps(state, ownProps) {
     return {
-      deviceList: state.devicelist
+        basicData:state.basicData,        
+        // deviceList: state.devicelist
     };
   }
   export default connect(mapStateToProps)(deviceList);

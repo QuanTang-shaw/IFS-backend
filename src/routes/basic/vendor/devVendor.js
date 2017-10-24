@@ -3,9 +3,9 @@ import { connect } from 'dva';
 import WrappedVendorForm from '../../../components/EditForm/devVendorForm'
 
 
-const devVendorList =({dispatch,vendorList})=>{
-
-    const {vendorListData,modalVisible}=vendorList
+const devVendorList =(props)=>{
+    const {dispatch,vendorList,basicData}=props
+    const {vendorListData,modalVisible}=basicData
     const columns = [
         {
             title: 'LOGO',
@@ -41,27 +41,6 @@ const devVendorList =({dispatch,vendorList})=>{
             )
         }
     ];
-    const data = [{
-        key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-      }, {
-        key: '2',
-        name: 'Jim Green',
-        age: 42,
-        address: 'London No. 1 Lake Park',
-      }, {
-        key: '3',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sidney No. 1 Lake Park',
-      }, {
-        key: '4',
-        name: 'Disabled User',
-        age: 99,
-        address: 'Sidney No. 1 Lake Park',
-    }];
     const rowSelection = {
         onChange: (selectedRowKeys, selectedRows) => {
             console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
@@ -90,8 +69,9 @@ const devVendorList =({dispatch,vendorList})=>{
     const showModal = (record,ev) => {
         // console.log(record)
         dispatch({
-            type:'vendorlist/toggleModal',
-            editData:record
+            type:'basicData/toggleModal',
+            editData:record,
+            dataPath:'vendorEditData'
         })
     }
     const handleOk = () => {
@@ -111,14 +91,15 @@ const devVendorList =({dispatch,vendorList})=>{
                 onCancel={showModal}
                 footer={null}
             >
-                <WrappedVendorForm {...vendorList}/>
+                <WrappedVendorForm {...basicData}/>
             </Modal>
         </div>
     )
 }
 function mapStateToProps(state, ownProps) {
     return {
-      vendorList: state.vendorlist
+        basicData:state.basicData,
+        // vendorList: state.vendorlist,
     };
   }
   export default connect(mapStateToProps)(devVendorList);

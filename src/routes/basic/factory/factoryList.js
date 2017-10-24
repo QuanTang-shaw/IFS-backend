@@ -4,11 +4,11 @@ import { connect } from 'dva';
 const FormItem = Form.Item;
 import WrappedFactoryForm from '../../../components/EditForm/factoryForm'
 // console.log(WrappedFactoryForm)
-const factorylist = function ({dispatch, factoryList}) {
-  // console.log(factoryList);
+const factorylist = function (props) {
   // const pic=require('./assets/img/plant1.7e6c59c');
-  // console.log(pic)
-  const { factoryTableData,modalVisible,modalLoading }=factoryList;
+  console.log(props);
+  const {dispatch, factoryList,basicData}=props
+  const { factoryTableData,modalVisible}=basicData;
   const confirm=(e)=> {
     console.log(e);
     message.success('删除成功');
@@ -22,10 +22,10 @@ const factorylist = function ({dispatch, factoryList}) {
   }
   const showModal = (record,ev) => {
     // console.log(record)
-    // console.log(ev)
     dispatch({
-      type:'factoryList/toggleModal',
-      editData:record
+      type:'basicData/toggleModal',
+      editData:record,
+      dataPath:'factoryEditData'
     })
   }
   const handleOk = () => {
@@ -116,102 +116,22 @@ const factorylist = function ({dispatch, factoryList}) {
         onOk={handleOk}
         onCancel={showModal}
         footer={null}
-      >
+        >
         {/* footer={[
           <Button key="back" size="large" onClick={showModal}>取消</Button>,
           <Button key="submit" type="primary" size="large" loading={modalLoading} onClick={handleOk}>
             提交
           </Button>,
         ]} */}
-        <WrappedFactoryForm {...factoryList}/>
-        {/* <Form>
-          <FormItem
-            {...formItemLayout}
-            label="名称"
-            validateStatus="error"
-            help="Should be combination of numbers & alphabets"
-          >
-            <Input placeholder="请输入工厂名称" id="error" />
-          </FormItem>
-          <FormItem
-            {...formItemLayout}
-            label="地址"
-            validateStatus="warning"
-          >
-            <Input placeholder="Warning" id="warning" />
-          </FormItem>
-          <FormItem
-            {...formItemLayout}
-            label="联系方式"
-            hasFeedback
-            validateStatus="validating"
-            help="The information is being validated..."
-          >
-            <Input placeholder="I'm the content is being validated" id="validating" />
-          </FormItem>
-
-          <FormItem
-            {...formItemLayout}
-            label="Success"
-            hasFeedback
-            validateStatus="success"
-          >
-            <Input placeholder="I'm the content" id="success" />
-          </FormItem>
-
-          <FormItem
-            {...formItemLayout}
-            label="Warning"
-            hasFeedback
-            validateStatus="warning"
-          >
-            <Input placeholder="Warning" id="warning" />
-          </FormItem>
-
-          <FormItem
-            {...formItemLayout}
-            label="Fail"
-            hasFeedback
-            validateStatus="error"
-            help="Should be combination of numbers & alphabets"
-          >
-            <Input placeholder="unavailable choice" id="error" />
-          </FormItem>
-
-          <FormItem
-            label="inline"
-            labelCol={{
-              xs: { span: 24 },
-              sm: { span: 5 },
-            }}
-            wrapperCol={{
-              xs: { span: 24 },
-              sm: { span: 19 },
-            }}
-            help
-          >
-            <Col span="6">
-              <FormItem validateStatus="error" help="Please select the correct date">
-                <DatePicker />
-              </FormItem>
-            </Col>
-            <Col span="1">
-              <p className="ant-form-split">-</p>
-            </Col>
-            <Col span="6">
-              <FormItem>
-                <DatePicker />
-              </FormItem>
-            </Col>
-          </FormItem>
-        </Form> */}
+        <WrappedFactoryForm {...basicData}/>
       </Modal>
     </div>
   );
 }
 function mapStateToProps(state, ownProps) {
   return {
-    factoryList: state.factoryList
+    basicData: state.basicData,
+    // factoryList: state.factoryList
   };
 }
 export default connect(mapStateToProps)(factorylist);

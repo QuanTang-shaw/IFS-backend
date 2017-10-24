@@ -2,7 +2,7 @@ import { workshopListActive } from '../services/workshop'
 export default {
     namespace: 'workshop',
     state: {
-      dataList:[],
+      workshopTableData:[],
       workshopEditData:[],
       selectedRowKeys: [],
       modalVisible:false,
@@ -40,9 +40,9 @@ export default {
   
     reducers: {
       fetchWorkshopList(state,action){
-        state.dataList=[];
+        state.workshopTableData=[];
         action.payload.forEach((ele,index)=> {
-          state.dataList.push({
+          state.workshopTableData.push({
             key: `${index}`,
             numbering: ele.strWorkshopID,
             name: ele.strWorkshopName,

@@ -9,11 +9,12 @@ export default {
     modalLoading:false
   },
   subscriptions: {
-    setup({ dispatch, history }) {  // eslint-disable-line
+    setup({ dispatch, history }) {  
+      // eslint-disable-line
       // console.log(history);
       history.listen(({ pathname }) => {
-        // console.log(pathname)
-        if (pathname === '/basicData/factory' || pathname === '/') {
+      // console.log(pathname)
+        if (pathname === '/basicData/factory') {
           FactoryListActive().then(data=>{
             console.log(data);
             if(data.obj.hasOwnProperty('objectlist')){
@@ -23,7 +24,6 @@ export default {
               })                
             }
           })
-          // dispatch({ type: 'queryWeather' })
         }
       })
     },

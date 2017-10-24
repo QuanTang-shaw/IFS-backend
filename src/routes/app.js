@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
 // import { connect } from 'dva';
 // import { Link } from 'dva/router';
-import styles from './IndexPage.css';
+import styles from './app.css';
 import { Layout, Menu } from 'antd';
 const { SubMenu } = Menu;
 const {  Content } = Layout;
 import { Header, Bread, Sider,OutSider}  from '../components/LayoutBox/index';
-// console.log(styles)
 // const { Header, Bread, Sider } = LayoutBox;
 
 const App = ({children,app})=>{
-    // console.log(children);
-    // console.log(app);
     return(
         <Layout className={ styles.fullHeight}>
             <Header />

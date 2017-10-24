@@ -16,12 +16,12 @@ const app = dva({
 // 3. Model
 app.model(require('./models/app'));
 app.model(require('./models/basicData'));
-app.model(require('./models/factory'));
-app.model(require('./models/workshop'));
-app.model(require('./models/machine'));
-app.model(require('./models/devcategory'));
-app.model(require('./models/vendor'));
-app.model(require('./models/device'));
+// app.model(require('./models/factory'));
+// app.model(require('./models/workshop'));
+// app.model(require('./models/machine'));
+// app.model(require('./models/device'));
+// app.model(require('./models/devcategory'));
+// app.model(require('./models/vendor'));
 
 // 4. Router
 app.router(require('./router'));

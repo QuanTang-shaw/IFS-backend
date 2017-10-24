@@ -3,14 +3,16 @@ import { connect } from 'dva';
 const FormItem = Form.Item;
 import WrappedWorkshopForm from '../../../components/EditForm/workshopForm'
 
-const workshopList = function({dispatch, workshopList}){
-  // console.log( workshopList)
+const workshopList = function(props){
+  const {dispatch, workshopList,basicData}=props
+  const {workshopTableData ,selectedRowKeys ,loading,modalVisible}=basicData
+  
   const showModal = (record,ev) => {
     // console.log(record)
-    // console.log(ev)
     dispatch({
-      type:'workshop/toggleModal',
-      editData:record
+      type:'basicData/toggleModal',
+      editData:record,
+      dataPath:'workshopEditData'
     })
   }
   const handleOk = () => {
@@ -19,48 +21,7 @@ const workshopList = function({dispatch, workshopList}){
       this.setState({ loading: false, visible: false });
     }, 3000);
   }
-  const {dataList ,selectedRowKeys ,loading,modalVisible}=workshopList
-  const columns = [
-      {
-          title: '车间编号',
-          dataIndex: 'numbering',
-      }, 
-      {
-          title: '车间名称',
-          dataIndex: 'name',
-      }, 
-      {
-          title: '车间主管',
-          dataIndex: 'principal',
-          // width:250
-      },
-      {
-        title: '车间类型',
-        dataIndex: 'workshopType',
-        // width:150
-      },
-      {
-        title:'车间操作',
-        width:500,
-        render:(text, record, index)=>(
-          <div style={{display:'flex','justifyContent': 'space-around'}}>
-            <Button icon="edit" onClick={showModal.bind(this,record)}>编辑</Button>
-            <Popconfirm title="Are you sure delete this task?" onConfirm={confirm} onCancel={cancel} okText="Yes" cancelText="No">
-              <Button type="danger" icon="delete">删除</Button>
-            </Popconfirm>
-          </div>
-        )
-      }
-  ];
-  const data = [];
-  for (let i = 0; i < 46; i++) {
-    data.push({
-      key: i,
-      numbering: `F1-${i}`,
-      name: `注塑车间-${i}`,
-      principal: `John snow ${i}`,
-    });
-  }
+  
   const confirm=(e)=> {
     console.log(e);
     message.success('删除成功');
@@ -72,7 +33,6 @@ const workshopList = function({dispatch, workshopList}){
     console.log(e);
     message.error('Click on No');
   }
-  // const { selectedRowKeys ,loading } =workshopList
   const onSelectChange = (selectedRowKeys) => {
     console.log('selectedRowKeys changed: ', selectedRowKeys);
     // this.setState({ selectedRowKeys });
@@ -86,6 +46,38 @@ const workshopList = function({dispatch, workshopList}){
       type:"workshop/reload"
     })
   }
+  const columns = [
+    {
+        title: '车间编号',
+        dataIndex: 'numbering',
+    }, 
+    {
+        title: '车间名称',
+        dataIndex: 'name',
+    }, 
+    {
+        title: '车间主管',
+        dataIndex: 'principal',
+        // width:250
+    },
+    {
+      title: '车间类型',
+      dataIndex: 'workshopType',
+      // width:150
+    },
+    {
+      title:'车间操作',
+      width:500,
+      render:(text, record, index)=>(
+        <div style={{display:'flex','justifyContent': 'space-around'}}>
+          <Button icon="edit" onClick={showModal.bind(this,record)}>编辑</Button>
+          <Popconfirm title="Are you sure delete this task?" onConfirm={confirm} onCancel={cancel} okText="Yes" cancelText="No">
+            <Button type="danger" icon="delete">删除</Button>
+          </Popconfirm>
+        </div>
+      )
+    }
+  ];
   const rowSelection = {
     selectedRowKeys,
     onChange:onSelectChange,
@@ -102,22 +94,23 @@ const workshopList = function({dispatch, workshopList}){
           onClick={showModal} style={{marginLeft:30}}>添加车间</Button>
         <span style={{ marginLeft: 8 }}>{hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}</span>
       </div>
-      <Table rowSelection={rowSelection} columns={columns} dataSource={dataList} />
+      <Table rowSelection={rowSelection} columns={columns} dataSource={workshopTableData} />
       <Modal
         visible={modalVisible}
         title="车间编辑"
         onOk={handleOk}
         onCancel={showModal}
         footer={null}
-      >
-        <WrappedWorkshopForm {...workshopList}/>
+        >
+        <WrappedWorkshopForm {...basicData}/>
       </Modal>
     </div>
   );
 }
 function mapStateToProps(state, ownProps) {
   return {
-    workshopList: state.workshop
+    basicData:state.basicData,
+    // workshopList: state.workshop
   }
 }
 export default connect(mapStateToProps)(workshopList);

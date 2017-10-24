@@ -4,11 +4,10 @@ import { connect } from 'dva';
 import styles from './deviceType.css';
 import TypeItemWrap from './typeItem/typeItem';
 
-
 const DeviceType=(props)=>{
    console.log('devtypeProp',props);
-   const {deviceTypeState,dispatch}=props;
-   const {devParType,devSubType}=deviceTypeState;
+   const {basicData,dispatch}=props;
+   const {devParType,devSubType}=basicData;
    let typeItem=devParType.map((ele,num)=>{
         return (<li key={num.toString()}>   
                     <TypeItemWrap name={ele.name}/>
@@ -71,8 +70,7 @@ function mapStateToProps(state, ownProps) {
     // console.log('devtype-state',state)
     // console.log('devtype-ownprop',ownProps)
     return {
-        deviceTypeState: state.basicData
+        basicData: state.basicData
     }
 }
 export default connect(mapStateToProps)(DeviceType);    
-// export default DeviceType;

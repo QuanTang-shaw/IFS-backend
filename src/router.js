@@ -2,22 +2,12 @@ import React from 'react';
 import { Switch, Router, Route, IndexRoute ,routerRedux ,Redirect } from 'dva/router';
 const { ConnectedRouter } = routerRedux;
 // import dynamic from 'dva/dynamic';
-
-/* import IndexPage from './routes/IndexPage';
-import factoryList from './routes/factory/factoryList/factoryList';
-import machineList from './routes/machine/machineList';
-import factoryMap from './routes/factory/factoryMap/factoryMap';
-import workshopMG from './routes/basic/workshop/workshopList';
-import devModel from './routes/deviceModel/main';
-import devVendor from './routes/vendor/devVendor';
-import devList from './routes/deviceList/deviceList'; */
-
+// import example from './models/example'
 import App from './routes/app';
 import homePage from './routes/home/homepage';
 import basicData from './routes/basic/basicData';
 import productMonitor from './routes/monitor/proMonitor';
 import DataAnalysis from './routes/analysis/dataAnalysis';
-// import example from './models/example'
 function RouterConfig({ history, app }) {
 
   return (
