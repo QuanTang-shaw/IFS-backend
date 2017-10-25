@@ -2,7 +2,9 @@ import React from 'react';
 import { Table, Button ,Popconfirm,message,Modal,Form, Input, DatePicker, Col} from 'antd';
 import { connect } from 'dva';
 const FormItem = Form.Item;
-import WrappedFactoryForm from '../../../components/EditForm/factoryForm'
+import WrappedFactoryForm from '../../../components/EditForm/factoryForm';
+import  config  from 'utils/config';
+
 // console.log(WrappedFactoryForm)
 const factorylist = function (props) {
   // const pic=require('./assets/img/plant1.7e6c59c');
@@ -49,7 +51,7 @@ const factorylist = function (props) {
       title: '图片',
       dataIndex: 'age',
       key: 'age',
-      render: text => <img src="../assets/img/plant1.7e6c59c.jpg"/>,
+      render: text => <img src={config.factoryPic} width="120"/>,
     }, 
     {
       title: '名称',

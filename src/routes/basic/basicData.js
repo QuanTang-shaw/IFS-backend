@@ -34,9 +34,9 @@ const basicData=(props)=>{
                         </Link>
                         </Menu.Item>
                         <Menu.Item key="2">
-                        <Link to="/basicData/workshop">
-                            车间管理
-                        </Link>
+                            <Link to="/basicData/workshop">
+                                车间管理
+                            </Link>
                         </Menu.Item>
                         <Menu.Item key="3">
                             <Link to="/basicData/machine">
@@ -75,9 +75,15 @@ const basicData=(props)=>{
                                 设备型号
                             </Link>  
                         </Menu.Item>
+                        <Menu.Item key="10">
+                            <Link to="/basicData/">
+                                维护管理
+                            </Link>  
+                        </Menu.Item>
                     </SubMenu>
                     <SubMenu key="sub3" title={<span><Icon type="notification" />工作中心管理</span>}>
-                        <Menu.Item key="10">option10</Menu.Item>
+                        <Menu.Item key="11">工艺管理</Menu.Item>
+                        <Menu.Item key="12">机台列表</Menu.Item>
                     </SubMenu>
                 </Menu>
             </Sider>
@@ -100,6 +106,7 @@ const basicData=(props)=>{
                     </Switch>                    
                 </Content>
             </Layout>
+            {console.log('process',process)}
         </div>
     )
 }

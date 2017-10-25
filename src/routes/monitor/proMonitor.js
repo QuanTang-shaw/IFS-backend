@@ -44,8 +44,9 @@ const productMonitor=(props)=>{
                             </Link>
                         </Menu.Item>
                     </SubMenu>
-                    <SubMenu key="sub2" title={<span><Icon type="laptop" />生产看板</span>}>
-                        <Menu.Item key="7">设备品牌</Menu.Item>
+                    <SubMenu key="sub2" title={<span><Icon type="laptop" />数据监控</span>}>
+                        <Menu.Item key="4">设备列表</Menu.Item>
+                        <Menu.Item key="5">生产看板</Menu.Item>
                     </SubMenu>
                 </Menu>
             </Sider>

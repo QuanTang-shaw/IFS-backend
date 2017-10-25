@@ -8,6 +8,9 @@ import homePage from './routes/home/homepage';
 import basicData from './routes/basic/basicData';
 import productMonitor from './routes/monitor/proMonitor';
 import DataAnalysis from './routes/analysis/dataAnalysis';
+import test from 'routes/basic/basicData';
+console.log('测试一下',test);
+
 function RouterConfig({ history, app }) {
 
   return (

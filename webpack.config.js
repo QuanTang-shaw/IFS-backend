@@ -1,10 +1,9 @@
-// const HtmlWebpackPlugin = require('html-webpack-plugin')
-// const CopyWebpackPlugin = require('copy-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const webpack = require('webpack')
 
 module.exports = (webpackConfig, env) => {
-  console.log(webpackConfig)
- /*  const production = env === 'production'
+  const production = env === 'production'
   // FilenameHash
   webpackConfig.output.chunkFilename = '[name].[chunkhash].js'
 
@@ -29,11 +28,11 @@ module.exports = (webpackConfig, env) => {
   webpackConfig.plugins = webpackConfig.plugins.concat([
     new CopyWebpackPlugin([
       {
-        from: 'src/public',
+        from: 'public',
         to: production ? '../' : webpackConfig.output.outputPath,
       },
     ]),
-    new HtmlWebpackPlugin({
+    /* new HtmlWebpackPlugin({
       template: `${__dirname}/src/entry.ejs`,
       filename: production ? '../index.html' : 'index.html',
       minify: production ? {
@@ -41,19 +40,19 @@ module.exports = (webpackConfig, env) => {
       } : null,
       hash: true,
       headScripts: production ? null : ['/roadhog.dll.js'],
-    }),
-  ]) */
+    }), */
+  ])
 
   // Alias
   webpackConfig.resolve.alias = {
     components: `${__dirname}/src/components`,
     utils: `${__dirname}/src/utils`,
-    config: `${__dirname}/src/utils/config`,
-    enums: `${__dirname}/src/utils/enums`,
+    // config: `${__dirname}/src/utils/config`,
+    // enums: `${__dirname}/src/utils/enums`,
     services: `${__dirname}/src/services`,
     models: `${__dirname}/src/models`,
     routes: `${__dirname}/src/routes`,
-    basic: `/src/routes/basic`,
+    // themes: `${__dirname}/src/themes`,
   }
 
   return webpackConfig

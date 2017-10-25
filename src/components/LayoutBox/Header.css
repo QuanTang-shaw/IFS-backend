@@ -2,10 +2,20 @@
   min-height: 95%;
 }
 .logo {
-  width: 120px;
-  height: 31px;
-  background: #333;
+  /* width: 120px; */
+  /* height: 31px; */
+  /* background: #333; */
+  height: 36px;
   border-radius: 6px;
   margin: 16px 28px 16px 0;
   float: left;
+}
+.headOper{
+  float:right;
+  margin-right: 20px;
+  /* border:solid 1px; */
+}
+.avatar{
+  margin:0 15px;  
+  overflow: inherit;
 }

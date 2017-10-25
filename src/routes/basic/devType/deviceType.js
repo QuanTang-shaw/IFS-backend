@@ -1,6 +1,5 @@
 import { Row, Col ,Table, Button ,Popconfirm,message,Modal,Form, Input, DatePicker} from 'antd';
 import { connect } from 'dva';
-
 import styles from './deviceType.css';
 import TypeItemWrap from './typeItem/typeItem';
 
@@ -67,10 +66,10 @@ const DeviceType=(props)=>{
         )
     }
 function mapStateToProps(state, ownProps) {
-    // console.log('devtype-state',state)
-    // console.log('devtype-ownprop',ownProps)
+    // console.log('devtype-state',state);
+    // console.log('devtype-ownprop',ownProps);
     return {
         basicData: state.basicData
     }
 }
-export default connect(mapStateToProps)(DeviceType);    
+export default connect(mapStateToProps)(DeviceType);
