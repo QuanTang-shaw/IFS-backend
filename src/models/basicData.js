@@ -250,7 +250,8 @@ export default {
             numbering:ele.strDeviceID,
             ownWorkshop:ele.strWorkshopName,
             ownMachine:ele.strWorkstationName,
-            desc:ele.strDeviceDesc
+            desc:ele.strDeviceDesc,
+            devicePic:ele.strDeviceNote
           })
         });
         return { ...state };
@@ -292,7 +293,8 @@ export default {
             modelName: ele.strDevModelName,
             categoryName:ele.strDevCategoryName,
             vendorName:ele.strVendorShortName,
-            desc:ele.strDevModelDesc
+            desc:ele.strDevModelDesc,
+            devicePic:ele.strDevModelNote
           })
         });
         return { ...state };
@@ -306,7 +308,8 @@ export default {
             EN_Name: ele.strVendorShortName_EN,
             fullName: ele.strVendorName,
             address:ele.strVendorAddress,
-            desc:ele.strVendorDesc
+            desc:ele.strVendorDesc,
+            vendorPic:ele.strVendorNote
           })
         });
         return { ...state };

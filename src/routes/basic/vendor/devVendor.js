@@ -1,6 +1,7 @@
 import { Table,Button,Popconfirm,message,Modal,Form, Input, DatePicker, Col } from 'antd';
 import { connect } from 'dva';
 import WrappedVendorForm from '../../../components/EditForm/devVendorForm'
+import  config  from 'utils/config';
 
 
 const devVendorList =(props)=>{
@@ -10,7 +11,7 @@ const devVendorList =(props)=>{
         {
             title: 'LOGO',
             dataIndex: 'logo',
-            // render: text => <a href="#">{text}</a>,
+            render: (v1,v2,v3) =><img src={config.logoPic+v2.vendorPic} width="120"/>,
         }, 
         {
             title: '名称',

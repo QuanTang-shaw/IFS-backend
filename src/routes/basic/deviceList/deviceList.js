@@ -2,6 +2,7 @@ import { Table, Button ,Popconfirm,message,Modal,Form, Input, DatePicker, Col } 
 import { connect } from 'dva';
 const FormItem = Form.Item;
 import WrappedDeviceForm from '../../../components/EditForm/deviceForm'
+import  config  from 'utils/config';
 
 
 const deviceList =(props)=>{
@@ -11,7 +12,7 @@ const deviceList =(props)=>{
         {
             title: '图片',
             dataIndex: 'picture',
-            // render: text => <a href="#">{text}</a>,
+            render: (v1,v2,v3) =><img src={config.devicePic+v2.devicePic} width="120"/>,
         }, 
         {
             title: '名称',

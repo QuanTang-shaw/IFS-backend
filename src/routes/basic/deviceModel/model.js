@@ -3,6 +3,8 @@ import { Table, Button ,Popconfirm,message,Modal,Form, Input, DatePicker, Col} f
 import { connect } from 'dva';
 const FormItem = Form.Item;
 import WrappedFactoryForm from '../../../components/EditForm/factoryForm'
+import  config  from 'utils/config';
+
 // console.log(WrappedFactoryForm)
 const DevModel = function ({dispatch, basicData}) {
   // console.log(basicData);
@@ -45,8 +47,9 @@ const DevModel = function ({dispatch, basicData}) {
       title: '设备图片',
       dataIndex: 'age',
       key: 'age',
-      render: text => <img src="../assets/img/plant1.7e6c59c.jpg"/>,
-    }, 
+      width:250,
+      render: (v1,v2,v3) =><img src={config.devicePic+v2.devicePic} width="120"/>,
+    },
     {
       title: '型号',
       dataIndex: 'modelName',

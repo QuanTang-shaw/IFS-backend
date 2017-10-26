@@ -1,11 +1,19 @@
-import { Table,Button,Popconfirm,message,Modal,Form, Input, DatePicker, Col } from 'antd';
+import { Table,Button,Popconfirm,message,Modal,Form, Input, DatePicker, Col,Avatar,Popover } from 'antd';
 import { connect } from 'dva';
 
-import WrappedMachineForm from '../../../components/EditForm/machineForm'
+import WrappedMachineForm from '../../../components/EditForm/machineForm';
+import  config  from 'utils/config';
+
 const machineList =(props)=>{
     const {dispatch,machineList,basicData}=props
     const {machineTableData,modalVisible}=basicData
     const columns = [
+        {
+            title: '机台图片',
+            dataIndex: 'pic',
+            key: 'pic',
+            render: () => <img src={config.machinePic} width="120"/>,
+        },
         {
             title: '机台编号',
             dataIndex: 'numbering',
@@ -18,6 +26,11 @@ const machineList =(props)=>{
         {
             title: '机台主管',
             dataIndex: 'principal',
+            render:()=>(
+                <Popover content={employeeInfo} title="员工信息" trigger="hover">
+                    <Avatar src={config.people} />
+                </Popover>
+            )
         },
         {
             title: '机台类型',
@@ -50,6 +63,13 @@ const machineList =(props)=>{
             disabled: record.name === 'Disabled User',    // Column configuration not to be checked
         }),
     };
+    const employeeInfo = (
+        <div>
+            <p>姓名:张全蛋</p>
+            <p>年龄:28</p>
+            <p>入职日期:2017年10月28日</p>
+        </div>
+    );
     const confirm=(e)=> {
         console.log(e);
         message.success('删除成功');

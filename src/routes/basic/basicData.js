@@ -48,42 +48,52 @@ const basicData=(props)=>{
                                 产线管理
                             </Link>
                         </Menu.Item>
-                        {/* <Menu.Item key="5">
-                            <Link to="/basicData/dev-vendor">
-                                设备厂商
+                        <Menu.Item key="5">
+                            <Link to="/basicData">
+                                看板类别
                             </Link>
-                        </Menu.Item> */}
+                        </Menu.Item>
                         <Menu.Item key="6">
+                            <Link to="/basicData">
+                                看板管理
+                            </Link>
+                        </Menu.Item>
+                        <Menu.Item key="7">
                             <Link to="/basicData/devicelist">
                                 设备列表
                             </Link>
                         </Menu.Item>
                     </SubMenu>
                     <SubMenu key="sub2" title={<span><Icon type="laptop" />设备管理</span>}>
-                        <Menu.Item key="7">
+                        <Menu.Item key="8">
                             <Link to="/basicData/dev-vendor">
                                 设备厂商
                             </Link>
                         </Menu.Item>
-                        <Menu.Item key="8">
+                        <Menu.Item key="9">
                             <Link to="/basicData/dev-type">
                                 设备类别
                             </Link>
                         </Menu.Item>
-                        <Menu.Item key="9">
+                        <Menu.Item key="10">
                             <Link to="/basicData/dev-model">
                                 设备型号
                             </Link>  
                         </Menu.Item>
-                        <Menu.Item key="10">
+                        <Menu.Item key="11">
                             <Link to="/basicData/">
                                 维护管理
                             </Link>  
                         </Menu.Item>
                     </SubMenu>
                     <SubMenu key="sub3" title={<span><Icon type="notification" />工作中心管理</span>}>
-                        <Menu.Item key="11">工艺管理</Menu.Item>
-                        <Menu.Item key="12">机台列表</Menu.Item>
+                        <Menu.Item key="12">工艺管理</Menu.Item>
+                        <Menu.Item key="13">机台列表</Menu.Item>
+                    </SubMenu>
+                    <SubMenu key="sub4" title={<span><Icon type="notification" />员工管理</span>}>
+                        <Menu.Item key="14">部门设置</Menu.Item>
+                        <Menu.Item key="15">班组管理</Menu.Item>
+                        <Menu.Item key="16">员工列表</Menu.Item>
                     </SubMenu>
                 </Menu>
             </Sider>

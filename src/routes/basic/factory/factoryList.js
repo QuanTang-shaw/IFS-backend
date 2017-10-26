@@ -5,11 +5,11 @@ const FormItem = Form.Item;
 import WrappedFactoryForm from '../../../components/EditForm/factoryForm';
 import  config  from 'utils/config';
 
-// console.log(WrappedFactoryForm)
+// console.log(WrappedFactoryForm);
 const factorylist = function (props) {
   // const pic=require('./assets/img/plant1.7e6c59c');
   console.log(props);
-  const {dispatch, factoryList,basicData}=props
+  const {dispatch, factoryList,basicData}=props;
   const { factoryTableData,modalVisible}=basicData;
   const confirm=(e)=> {
     console.log(e);
@@ -23,7 +23,7 @@ const factorylist = function (props) {
     message.error('Click on No');
   }
   const showModal = (record,ev) => {
-    // console.log(record)
+    // console.log(record);
     dispatch({
       type:'basicData/toggleModal',
       editData:record,
@@ -48,7 +48,7 @@ const factorylist = function (props) {
   };
   const columns = [
     {
-      title: '图片',
+      title: '工厂图片',
       dataIndex: 'age',
       key: 'age',
       render: text => <img src={config.factoryPic} width="120"/>,
