@@ -22,6 +22,7 @@ export default {
       deviceEditData:[],
       vendorListData:[],
       vendorEditData:[],
+      workerInfoVisible:false,
       modalVisible:false,      
       modalToggle:{
         factory:false,
@@ -325,6 +326,10 @@ export default {
           state[dataPath]=action.editData;
         }
         // if(action.hasOwnProperty('editData')) state.workshopEditData=action.editData; 
+        return { ...state};
+      },
+      toggleInfo(state,action){
+        state.workerInfoVisible=!state.workerInfoVisible;
         return { ...state};
       },
       select(state, action){

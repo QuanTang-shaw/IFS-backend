@@ -13,6 +13,7 @@ import factoryMap from './factory/factoryMap';
 import devModel from './deviceModel/model';
 import devVendor from './vendor/devVendor';
 import devList from './deviceList/deviceList';
+import workerList from './workerList/index';
 import DeviceType from './devType/deviceType';
 import pLine from './pLine/productLine';
 const basicData=(props)=>{
@@ -93,7 +94,11 @@ const basicData=(props)=>{
                     <SubMenu key="sub4" title={<span><Icon type="notification" />员工管理</span>}>
                         <Menu.Item key="14">部门设置</Menu.Item>
                         <Menu.Item key="15">班组管理</Menu.Item>
-                        <Menu.Item key="16">员工列表</Menu.Item>
+                        <Menu.Item key="16">
+                            <Link to="/basicData/workerList">
+                                员工列表
+                            </Link>
+                        </Menu.Item>
                     </SubMenu>
                 </Menu>
             </Sider>
@@ -113,6 +118,8 @@ const basicData=(props)=>{
                         <Route path={`${match.url}/dev-type`} component={DeviceType} />
                         <Route path={`${match.url}/dev-model`} component={devModel} />
                         <Route path={`${match.url}/devicelist`} component={devList} />
+                        <Route path={`${match.url}/workerList`} component={workerList} />
+                        {/* <Route path={`${match.url}/workerList/workerInfo`} component={workerInfo} /> */}
                     </Switch>                    
                 </Content>
             </Layout>
