@@ -127,7 +127,6 @@ const tableList =(props)=>{
 function mapStateToProps(state, ownProps) {
     return {
         basicData:state.basicData,
-        // vendorList: state.vendorlist,
     };
   }
 export default connect(mapStateToProps)(tableList);

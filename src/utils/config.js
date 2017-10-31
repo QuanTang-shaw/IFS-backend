@@ -12,6 +12,7 @@ module.exports = {
   devicePic:'/assets/topstart/',
   logoPic:'/assets/vendor-logo/',
   people:'/assets/people/50/guy-2.jpg',
+  personalPic:'/assets/people/110/guy-2.jpg',
   iconFontCSS: '/iconfont.css',
   iconFontJS: '/iconfont.js',
   CORS: [],
